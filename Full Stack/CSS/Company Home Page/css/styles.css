@@ -86,3 +86,85 @@ h1 {
     font-weight: 900;
 }
 
+
+
+
+/* Team Section  */
+section {
+    display: flex;
+    /* height: 500px; */
+    margin-top: 40px
+}
+
+h2 {
+    margin-top: 27px;
+    text-align: center;
+    color: #191970;
+    font-size: 3em;
+    font-weight: 800;
+}
+
+figure {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+figcaption {
+    background-color: rgba(0, 0, 0, 0.8);
+    padding: 30px 30px;
+    width: 100%;
+    margin: 0;
+    color: white;
+}
+
+.teammate {
+    width: 250px;
+    height: 500px;
+    display: flex;
+    align-items: flex-end;
+    flex-grow: 1;
+    border: 7px solid white;
+}
+
+#ardonald {
+    background-image: url(/images/team-member-1.avif);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+#adonald {
+    background-image: url(/images/team-member-1.avif);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+
+}
+
+#ericadonald {
+    background-image: url(/images/team-member-1.avif);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+
+}
+
+#kitadonald {
+    background-image: url(/images/team-member-1.avif);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+
+}
+
+#elandonald {
+    background-image: url(/images/team-member-1.avif);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+
+}
+
+h3 {
+    font-size: 2rem;
+}
