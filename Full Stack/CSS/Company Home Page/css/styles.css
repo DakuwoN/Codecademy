@@ -168,3 +168,67 @@ figcaption {
 h3 {
     font-size: 2rem;
 }
+
+h4 {
+    text-align: center;
+    margin-top: 20px;
+    width: 70%;
+    line-height: 2;
+    font-weight: 600;
+    color: #191970;
+}
+
+/* Projects content */
+
+.projects {
+    max-width: 1000px;
+    margin: 100px auto;
+    padding: 0 20px;
+}
+
+.projects-row {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.project-row {
+    width: 300px;
+    min-height: 300px;
+    display: flex;
+    align-items: flex-end;
+    border: 2px solid white;
+}
+
+#penn {
+    background-image: url(/images/project-1.avif);
+    background-position: center;
+    background-repeat: no-repeat;
+    flex-grow: 1;
+}
+
+#cali {
+    background-image: url(/images/project-1.avif);
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    flex-grow: 5;
+
+}
+
+#mizzou {
+    background-image: url(/images/project-1.avif);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    flex-grow: 5;
+
+}
+
+#florida {
+    background-image: url(/images/project-1.avif);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    flex-grow: 1;
+
+}
