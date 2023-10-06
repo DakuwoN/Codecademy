@@ -11,9 +11,6 @@
 
 /* Navigation Bar */
 
-h1 {
-    font-size: 2em;
-}
 
 nav {
     border-bottom: 2px solid #ffff00;
@@ -203,6 +200,7 @@ h4 {
     background-image: url(/images/project-1.avif);
     background-position: center;
     background-repeat: no-repeat;
+    background-size: cover;
     flex-grow: 1;
 }
 
