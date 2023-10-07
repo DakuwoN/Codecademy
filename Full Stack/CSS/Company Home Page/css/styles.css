@@ -70,6 +70,7 @@ header {
 .header-text {
     max-width: 1061px;
     margin: 60px;
+    background-color: rgba(0, 0, 0, 0.6);
         
 }
 
@@ -229,4 +230,49 @@ h4 {
     background-size: cover;
     flex-grow: 1;
 
+}
+
+/* Contact section  */
+
+.contacts {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    max-width: 1000px;
+    margin: 100px auto;
+    padding: 0 20px;
+}
+
+.contacts .content {
+    width: 280px;
+    padding-right: 40px;
+    margin: 20px 0;
+    flex-grow: 1;
+    /* background-color: rgba(0, 0, 0, 0.2); */
+    color: #191970;
+    text-align: center;
+}
+
+.contacts img {
+    width: 280px;
+    height: auto;
+    flex-grow: 2;
+}
+
+.contact-ddg {
+    font-size: 2rem;
+    font-weight: 700;
+}
+
+.email, .phone, .address {
+    font-weight: 800;
+    font-size: 1.5rem;
+}
+
+/* Footer Section  */
+
+footer {
+    text-align: center;
+    font-weight: 600;
 }
