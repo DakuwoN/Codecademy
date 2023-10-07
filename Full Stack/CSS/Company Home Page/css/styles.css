@@ -87,7 +87,7 @@ h1 {
 
 
 /* Team Section  */
-section {
+.team {
     display: flex;
     /* height: 500px; */
     margin-top: 40px
@@ -179,7 +179,7 @@ h4 {
 
 .projects {
     max-width: 1000px;
-    margin: 100px auto;
+    margin: 41px auto;
     padding: 0 20px;
 }
 
@@ -205,7 +205,7 @@ h4 {
 }
 
 #cali {
-    background-image: url(/images/project-1.avif);
+    background-image: url(/images/project-2.avif);
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
@@ -214,7 +214,7 @@ h4 {
 }
 
 #mizzou {
-    background-image: url(/images/project-1.avif);
+    background-image: url(/images/project-3.avif);
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
@@ -223,7 +223,7 @@ h4 {
 }
 
 #florida {
-    background-image: url(/images/project-1.avif);
+    background-image: url(/images/project-4.avif);
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
