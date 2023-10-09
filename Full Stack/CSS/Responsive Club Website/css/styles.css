@@ -1,0 +1,102 @@
+* {
+    background-color: #000000;
+    color: #7FFF00;
+}
+
+/* Grid Layout  */
+.grid {
+    display: grid;
+    border: 2px solid white;
+    grid-template-rows: repeat(10, 10fr) 150fr;
+    grid-template-columns: 50fr 100fr 50fr;
+    max-width: 90%;
+    margin: auto;
+    gap: 10px 20px;
+    grid-template-areas: 
+        "nav nav nav"
+        "qb qb qb"
+        "rb1 rb1 rb1"
+        "rb2 rb2 rb2"
+        "wr1 wr1 wr1"
+        "wr2 wr2 wr2"
+        "wr3 wr3 wr3"
+        "te te te" 
+        "flex flex flex"
+        "def def def"
+        "pre-vegas content post-vegas";
+     
+    
+   
+}
+
+.nav {
+    grid-area: nav;
+
+}
+
+.qb {
+    grid-area: qb;
+}
+
+.rb1 {
+    grid-area: rb1;
+}
+
+.rb2 {
+    grid-area: rb2;
+}
+
+.wr1 {
+    grid-area: wr1;
+}
+
+.wr2 {
+    grid-area: wr2;
+}
+
+.wr3 {
+    grid-area: wr3;
+} 
+
+.te {
+    grid-area: te;
+}
+
+.flex {
+    grid-area: flex;
+}
+
+.def {
+    grid-area: def;
+}
+
+.pre-vegas {
+    grid-area: pre-vegas;
+   
+}
+
+.content {
+    grid-area: content;
+}
+
+.post-vegas {
+    grid-area: post-vegas;
+}
+
+
+
+.position {
+    background-color: white 2px solid;
+    border-radius: 5px;
+    border: 2px solid #7FFF00;
+}
+
+/* Navigation Bar  */
+
+ul {
+    list-style-type: none;
+    text-decoration: none;
+    margin: 0;
+    display: flex;
+    justify-content: space-around;
+}
