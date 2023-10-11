@@ -3,7 +3,7 @@
     color: #7FFF00;
     font-family: 'Gabarito', sans-serif;
     font-weight: 400;
-   font-size: 16px;
+    font-size: 16px;
 }
 
 /* Grid Layout  */
@@ -14,7 +14,7 @@
     grid-auto-columns: auto;
     max-width: 90%;
     margin: auto;
-    gap: 10px 20px;
+    gap: 0.6rem 1.4rem;
     grid-template-areas: 
         "nav nav nav"
         "qb qb qb"
@@ -125,7 +125,7 @@ ul {
 
     display: flex;
     justify-content: space-around;
-    margin-top: 40px;
+    margin-top: 2.5rem;
 }
 
 li, a {
@@ -138,11 +138,11 @@ li, a {
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
-    height: 400px;
+    height: 25rem;
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-top: 40px;
+    margin-top: 2.5rem;
 }
 
 /* Player Content  */
@@ -158,7 +158,7 @@ li, a {
 
 .player-result, span {
     font-size: 2rem;
-    margin: 10px;
+    margin: 0.6rem;
 }
 
 .player-result {
@@ -198,3 +198,19 @@ th {
 .post-vegas.position.column {
     display: flex;
 }
+
+/* Media Queries  */
+
+@media only screen and (max-width: 1300px) {
+    .column {
+        height: 500px;
+    }
+
+    .content.position.column {
+        height: auto;
+        position: absolute;
+        top: 137.5rem;
+        /* margin: -295px; */
+    }
+}
+
