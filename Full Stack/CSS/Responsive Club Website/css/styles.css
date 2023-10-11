@@ -1,14 +1,17 @@
 * {
     background-color: #000000;
     color: #7FFF00;
+    font-family: 'Gabarito', sans-serif;
+    font-weight: 400;
+   font-size: 16px;
 }
 
 /* Grid Layout  */
 .grid {
     display: grid;
     border: 2px solid white;
-    grid-template-rows: repeat(10, 10fr) 150fr;
-    grid-template-columns: 50fr 100fr 50fr;
+    grid-auto-rows: auto;
+    grid-auto-columns: auto;
     max-width: 90%;
     margin: auto;
     gap: 10px 20px;
@@ -36,42 +39,61 @@
 
 .qb {
     grid-area: qb;
+    width: auto;
+    margin: 0 auto;
 }
 
 .rb1 {
     grid-area: rb1;
+    width: auto;
+    margin: 0 auto;
 }
 
 .rb2 {
     grid-area: rb2;
+    width: auto;
+    margin: 0 auto;
 }
 
 .wr1 {
     grid-area: wr1;
+    width: auto;
+    margin: 0 auto;
 }
 
 .wr2 {
     grid-area: wr2;
+    width: auto;
+    margin: 0 auto;
 }
 
 .wr3 {
     grid-area: wr3;
+    width: auto;
+    margin: 0 auto;
 } 
 
 .te {
     grid-area: te;
+    width: auto;
+    margin: 0 auto;
 }
 
 .flex {
     grid-area: flex;
+    width: auto;
+    margin: 0 auto;
 }
 
 .def {
     grid-area: def;
+    width: auto;
+    margin: 0 auto;
 }
 
 .pre-vegas {
     grid-area: pre-vegas;
+    
    
 }
 
@@ -91,12 +113,88 @@
     border: 2px solid #7FFF00;
 }
 
-/* Navigation Bar  */
+/* Navigation Bar and Banner  */
+
+.banner-text {
+    background-color: rgba(0, 0, 0, 0.5);
+}
 
 ul {
     list-style-type: none;
-    text-decoration: none;
     margin: 0;
+
     display: flex;
     justify-content: space-around;
+    margin-top: 40px;
+}
+
+li, a {
+    text-decoration: none;
+    font-size: 2rem;
+}
+
+.image-banner {
+    background-image: url('/images/football.avif');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 400px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 40px;
+}
+
+/* Player Content  */
+
+
+.player-info {
+    display: flex;
+}
+
+.player-photo {
+    display: flex;
+}
+
+.player-result, span {
+    font-size: 2rem;
+    margin: 10px;
+}
+
+.player-result {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+/* Pre Vegas Content  */
+
+table {
+    border: 2px solid white;
+}
+
+th {
+    border: 2px solid red;
+}
+
+.pre-vegas.position.column {
+    display: flex;
+    justify-content: center;
+}
+
+/* Content column */
+.content.position.column {
+    display: flex;
+    flex-direction: column;
+}
+.content {
+    text-align: center;
+    font-size: 2rem;
+    color: white;
+}
+
+/* Post Vegas Content  */
+
+.post-vegas.position.column {
+    display: flex;
 }
