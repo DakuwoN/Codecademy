@@ -1,0 +1,28 @@
+* {
+    font-family: 'Old Standard TT', serif;
+    background-color: #F5F5DC;
+    color: #000000;
+   
+}
+
+body {
+    width: 50%;
+    margin: 0 auto;
+    font-size: 16px;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1.5em;
+}
+
+ul {
+    display: inline-flex;
+    list-style: none;
+}
+
+li {
+    padding: 20px;
+}
