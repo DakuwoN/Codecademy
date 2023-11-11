@@ -13,6 +13,8 @@ body {
     font-size: 16px;
 }
 
+
+
 /* Header and navbar styling */
 header {
     display: flex;
@@ -60,6 +62,9 @@ a {
     text-decoration: none;
 }
 
+
+
+
 /* Link animations */
 a:link {
     color: #000000;
@@ -84,6 +89,10 @@ a:active {
     color: #000000;
     font-weight: 600;
 }
+
+
+
+
 
 /* Main content  */
 
@@ -133,6 +142,55 @@ h2 {
   }
   
 }
+
+/* Paragraph content  */
+
+article {
+    display: flex;
+    font-size: 1.1rem;
+    font-weight: 500;
+    flex-direction: column;
+    line-height: 1.6;
+}
+
+p.welcome-content {
+    font-size: 1.1em;
+}
+
+/* Footer content  */
+
+footer {
+  display: flex;
+  padding: 20px;
+}
+
+.left-content,
+.right-content {
+  display: flex;
+  align-items: center;
+  margin-left: -1.25em;
+}
+
+.right-content {
+  margin-left: auto; /* Pushes the social icons to the right */
+}
+
+.footer-content {
+  margin: 0; /* Remove default margin */
+}
+
+.fa-brands {
+  font-size: 16px; 
+  margin-left: 30px; 
+}
+
+
+
+
+
+
+
+
 
 
 
