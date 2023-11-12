@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Matthew McCane</title>
+
+    <!-- Link to external stylesheet -->
+    <link href="./css/style.css" rel="stylesheet" />
+
+    <!-- Google Fonts preconnect and font link -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Old+Standard+TT&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Favicon -->
+    <link rel="icon" href="./images/favicon.ico" type="image/x-icon" />
+
+    <!-- Meta tags for SEO and social media -->
+    <meta name="Portfolio" content="Matthew McCane Portfolio" />
+
+    <!-- Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <script
+      src="https://kit.fontawesome.com/35818c1ee2.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+
+  <body>
+    <header>
+      <h1><a href="index.html">@itsMattMcCane</a></h1>
+      <nav>
+        <ul>
+          <li><a href="projects.html">projects</a></li>
+          <li>
+            <a
+              href="./Matthew McCane - Software Engineering Resume - 2023.pdf"
+              target="_blank"
+              >resume</a
+            >
+          </li>
+        </ul>
+      </nav>
+    </header>
+
+    <main>
+      <!-- Slideshow container -->
+      <div class="slideshow-container">
+        <div class="myProjects fade">
+          <!-- Full-width images with number and caption text  -->
+
+          <img
+            src="./images/avatar.png"
+            alt="Portfolio Project"
+            class="slide-image"
+          />
+          <div class="text">Portfolio Project</div>
+        </div>
+
+        <div class="myProjects fade">
+          <img
+            src="./images/reddit-logo.svg"
+            alt="Front End Reddit Client"
+            class="slide-image"
+          />
+          <div class="text">Front End: Reddit Client</div>
+        </div>
+
+        <div class="myProjects fade">
+          <img
+            src="./images/E-commerce-logos.png"
+            alt="Back End E-Commerce"
+            class="slide-image"
+          />
+          <div class="text">Back End: E-Commerce (RESTful API)</div>
+        </div>
+
+        <div class="myProjects fade">
+          <img
+            src="./images/e-commerce-logo2.jpg"
+            alt="Full Stack E-Commerce"
+            class="slide-image"
+          />
+          <div class="text">Full Stack: E-Commerce (Client)</div>
+        </div>
+
+        <!-- Next and previous buttons  -->
+        <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+        <a class="next" onclick="plusSlides(1)">&#10095;</a>
+      </div>
+      <br />
+
+      <!-- The dots/circles -->
+      <div style="text-align: center">
+        <span class="dot" onclick="currentSlide(1)"></span>
+        <span class="dot" onclick="currentSlide(2)"></span>
+        <span class="dot" onclick="currentSlide(3)"></span>
+        <span class="dot" onclick="currentSlide(4)"></span>
+      </div>
+    </main>
+
+    <footer>
+      <div class="left-content">
+        <p class="footer-content">
+          <a href="https://matthewmccane.blogspot.com" target="_blank"
+            >Matthew McCane</a
+          >
+          © 2023
+        </p>
+      </div>
+
+      <div class="right-content">
+        <a href="https://medium.com/@DakuwoN" target="_blank">
+          <span class="fa-brands fa-medium" style="color: #000000"></span>
+        </a>
+        <a
+          href="https://www.reddit.com/user/Still-Pudding-1638"
+          target="_blank"
+        >
+          <span class="fa-brands fa-reddit" style="color: #000000"></span>
+        </a>
+
+        <a href="https://www.instagram.com/itsmattmccane/" target="_blank">
+          <span class="fa-brands fa-instagram" style="color: #000000"></span>
+        </a>
+
+        <a href="https://www.linkedin.com/in/matthewmccane/" target="_blank">
+          <span class="fa-brands fa-linkedin" style="color: #000000"></span>
+        </a>
+
+        <a href="https://twitter.com/itsMattMcCane" target="_blank">
+          <span class="fa-brands fa-x-twitter" style="color: #000000"></span>
+        </a>
+      </div>
+    </footer>
+
+    <!-- JavaScript at the end of the body for better performance -->
+    <script src="/js/app.js"></script>
+  </body>
+</html>
