@@ -11,3 +11,7 @@ This is the documentation of my journey as I learn Full Stack Development at Cod
 
 - [Portfolio Website](/Portfolio%20Website/)
 - [JavaScript](/Full%20Stack/JavaScript/)
+
+## Front-End Development
+
+- [Intermediate JavaScript]
