@@ -14,4 +14,4 @@ This is the documentation of my journey as I learn Full Stack Development at Cod
 
 ## Front-End Development
 
-- [Intermediate JavaScript]
+- [Intermediate JavaScript](/Intermediate%20JavaScript/)
