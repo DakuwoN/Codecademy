@@ -15,3 +15,6 @@ This is the documentation of my journey as I learn Full Stack Development at Cod
 ## Front-End Development
 
 - [Intermediate JavaScript](/Intermediate%20JavaScript/)
+- [Async JavaScript and HTTP Requests](/Full%20Stack/Async%20JavaScript%20and%20HTTP%20Requests/)
+- [JavaScript Testing](/Full%20Stack/JavaScript%20Testing/)
+- [React](/Full%20Stack/React/)
