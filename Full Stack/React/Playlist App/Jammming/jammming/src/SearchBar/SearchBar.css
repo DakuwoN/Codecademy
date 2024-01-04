@@ -5,3 +5,7 @@
 .search-bar input {
   margin-right: 10px;
 }
+
+button {
+  cursor: pointer;
+}

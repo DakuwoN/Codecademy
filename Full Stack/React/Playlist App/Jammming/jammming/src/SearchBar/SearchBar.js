@@ -1,6 +1,7 @@
 import "./SearchBar.css";
 
 function SearchBar() {
+  console.log("App component is rendering");
   return (
     <form className="search-bar">
       <input type="text" placeholder="Artist, Song, Genre" />
