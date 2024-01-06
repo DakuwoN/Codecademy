@@ -13,17 +13,27 @@ function App() {
   const [playlistName, setPlaylistName] = useState("My Playlists");
   const [playlistTracks, setPlaylistTracks] = useState([]);
 
+  // adding a track to playlist
   function addTrack(track) {
     if (!playlistTracks.includes(track)) {
       setPlaylistTracks((prevTracks) => [...prevTracks, track]);
     }
   }
-
+  // removing a track from playlist
   function removeTrack(track) {
     setPlaylistTracks((prevTracks) =>
       prevTracks.filter((t) => t.id !== track.id)
     );
   }
+
+  // function for saving the playlist
+  const savePlaylist = () => {
+    // creates array of track URI's
+    const trackURIs = props.playlistTracks.map((track) => track.uri);
+    console.log(trackURIs); // replace with call to spotify
+    setPlaylistName("Create New Playlist"); // resets playlist name to Create New Playlist
+    props.onSave(); // Calls the onSave function passed as a prop
+  };
 
   return (
     <div className="App">
@@ -31,7 +41,11 @@ function App() {
       <LoginButton />
       <SearchBar />
       <SearchResults addTrack={addTrack} />
-      <Playlist playlistName={playlistName} playlistTracks={playlistTracks} />
+      <Playlist
+        playlistName={playlistName}
+        playlistTracks={playlistTracks}
+        savePlaylist={savePlaylist}
+      />
     </div>
   );
 }
