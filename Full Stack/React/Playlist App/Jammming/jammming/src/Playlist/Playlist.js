@@ -18,6 +18,43 @@ function Playlist(props) {
     console.log(trackURIs); // replace with call to spotify
     setPlaylistName("Create New Playlist"); // resets playlist name to Create New Playlist
     props.onSave(); // Calls the onSave function passed as a prop
+
+    // this is the data we send to Spotify to create a new playlists
+    let data = { name: playlistName };
+
+    // this is where you send a POST request to Spotify to create a new playlist
+    fetch("https://api.spotify.com/v1/me/playlists", {
+      method: "POST", // or 'PUT'
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + accessToken,
+      },
+      body: JSON.stringify(data), // data can be `string` or {object}!
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        // after the post is created, spotify sends back data about the playlist
+        // extracting the id of the playlist from the data
+        const playlistId = data.id;
+        console.log(playlistId);
+        // send a POST request to Spotify to add tracks to the playlist
+        fetch(
+          "https://api.spotify.com/v1/playlists/" + playlistId + "/tracks",
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: "Bearer " + accessToken,
+            },
+            body: JSON.stringify({ uris: trackURIs }),
+          }
+        )
+          .then((response) => response.json())
+          .then((data) => {
+            console.log(data);
+          });
+      })
+      .catch((error) => console.error("Error:", error));
   };
 
   return (
