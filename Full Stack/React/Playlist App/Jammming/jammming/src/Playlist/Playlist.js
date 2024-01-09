@@ -1,5 +1,5 @@
 import { useState } from "react";
-import "./Playlist.css";
+import styles from "./Playlist.module.css";
 
 function Playlist(props) {
   console.log("App component is rendering");
@@ -17,7 +17,7 @@ function Playlist(props) {
     const trackURIs = props.playlistTracks.map((track) => track.uri);
     console.log(trackURIs); // replace with call to spotify
     setPlaylistName("Create New Playlist"); // resets playlist name to Create New Playlist
-    props.onSave(); // Calls the onSave function passed as a prop
+    props.savePlaylist(); // Calls the onSave function passed as a prop
 
     // this is the data we send to Spotify to create a new playlists
     let data = { name: playlistName };
@@ -60,25 +60,27 @@ function Playlist(props) {
   return (
     <>
       <div className="playlist-container">
-        // this is the input field for the playlist
+        {/* // this is the input field for the playlist */}
         <input value={playlistName} onChange={handleNameChange} />
-        // this displays the playlist name
+        {/* // this displays the playlist name */}
         <h2>{props.playlistName}</h2>
-        // maps over the array of playlists tracks
+        {/* // maps over the array of playlists tracks */}
         {props.playlistTracks.map((track, index) => (
           <div key={index}>
-            // do I need this? // each track is wrapped in a div with a unique
-            key
+            {/* // do I need this? // each track is wrapped in a div with a unique
+            key */}
             <p>
-              {track.name} by {track.artist} from {track.album} // displays
-              track info
+              {track.name} by {track.artist} from {track.album}
+              {/* // displays track info */}
             </p>
-            <button onClick={() => props.onRemove(track)}>Remove</button> //
-            button to remove a track from playlist
+            <button onClick={() => props.onRemove(track)}>Remove</button>
+            {/* button to remove a track from playlist */}
           </div>
         ))}
-        <button onClick={savePlaylist}>Save Playlist to Spotify!</button> //
-        button to save to playlist
+        <button onClick={savePlaylist} className="saveToSpotify">
+          Save Playlist to Spotify!
+        </button>
+        {/* //button to save to playlist */}
       </div>
     </>
   );

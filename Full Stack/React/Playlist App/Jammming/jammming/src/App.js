@@ -1,4 +1,4 @@
-import "./App.css";
+import styles from "./App.module.css";
 import SearchBar from "./SearchBar/SearchBar";
 import LoginButton from "./Login/LoginButton";
 import SearchResults from "./SearchResults/SearchResults";
@@ -32,13 +32,14 @@ function App() {
     const trackURIs = props.playlistTracks.map((track) => track.uri);
     console.log(trackURIs); // replace with call to spotify
     setPlaylistName("Create New Playlist"); // resets playlist name to Create New Playlist
-    props.onSave(); // Calls the onSave function passed as a prop
+    props.savePlaylist(); // Calls the onSave function passed as a prop
   };
 
   return (
-    <div className="App">
-      <h1>Jammming Playlist App</h1>
+    <div className={styles.App}>
+      <h1>Jammming </h1>
       <LoginButton />
+
       <SearchBar />
       <SearchResults addTrack={addTrack} />
       <Playlist

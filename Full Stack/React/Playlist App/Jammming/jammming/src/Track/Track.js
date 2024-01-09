@@ -1,4 +1,4 @@
-import "./Track.css";
+import styles from "./Track.module.css";
 
 // Responsible for displaying track data
 function Track(props) {

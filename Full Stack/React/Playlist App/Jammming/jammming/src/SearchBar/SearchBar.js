@@ -1,5 +1,5 @@
 import { useState } from "react";
-import "./SearchBar.css";
+import styles from "./SearchBar.module.css";
 
 function SearchBar(props) {
   console.log("App component is rendering");
@@ -31,7 +31,7 @@ function SearchBar(props) {
   return (
     // form element with onsubmit handler
     <form className="search-bar" onSubmit={handleSubmit}>
-      // input field with onChange handler
+      {/* // input field with onChange handler */}
       <input
         type="text"
         onChange={handleInputchange}
