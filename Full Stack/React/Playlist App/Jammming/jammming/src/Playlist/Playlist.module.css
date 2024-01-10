@@ -1,4 +1,4 @@
-button {
+/* button {
   display: inline-block;
   outline: none;
   cursor: pointer;
@@ -23,3 +23,8 @@ button {
     background-color: #21e065;
   }
 }
+
+.playlistcontainer {
+  grid-area: playlists;
+  border: 2px solid blue;
+} */

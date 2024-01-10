@@ -30,7 +30,7 @@ function SearchBar(props) {
 
   return (
     // form element with onsubmit handler
-    <form className="search-bar" onSubmit={handleSubmit}>
+    <form className="searchbar" onSubmit={handleSubmit}>
       {/* // input field with onChange handler */}
       <input
         type="text"

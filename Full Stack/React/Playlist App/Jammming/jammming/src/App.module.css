@@ -3,3 +3,50 @@ body {
   box-sizing: border-box;
   background-color: grey;
 }
+
+.App {
+  display: grid;
+  border: 2px solid blue;
+  width: 100%;
+  min-height: 100%;
+  justify-content: center;
+  align-content: center;
+  grid-template-areas:
+    "title title title"
+    "spotify spotify spotify"
+    "search . playlists"
+    "results . playlists"
+    "results . playlists";
+
+  grid-template-columns: 50% 1fr;
+  grid-template-rows: 200px 200px 200px;
+}
+
+.title {
+  grid-area: title;
+  border: 2px solid greenyellow;
+  text-align: center;
+  font-size: xx-large;
+}
+
+.loginbutton {
+  grid-area: spotify;
+  border: 2px solid greenyellow;
+  display: flex;
+  justify-content: center;
+}
+
+.searchbar {
+  grid-area: search;
+  border: 2px solid greenyellow;
+}
+
+.searchresults {
+  grid-area: results;
+  border: 2px solid greenyellow;
+}
+
+.playlists {
+  grid-area: playlists;
+  border: 2px solid greenyellow;
+}

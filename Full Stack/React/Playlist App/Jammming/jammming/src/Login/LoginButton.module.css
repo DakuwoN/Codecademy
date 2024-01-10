@@ -1,5 +1,5 @@
 .loginbutton {
-  display: inline-fle;
+  display: inline-flex;
   outline: none;
 
   cursor: pointer;
@@ -23,4 +23,12 @@
     transform: scale(1.04);
     background-color: #21e065;
   }
+}
+
+.loginbutton {
+  grid-area: spotify;
+  border: 2px solid blue;
+  display: flex;
+  justify-content: center;
+  align-content: center;
 }

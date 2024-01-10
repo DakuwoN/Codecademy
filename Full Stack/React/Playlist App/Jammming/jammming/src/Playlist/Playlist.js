@@ -59,7 +59,7 @@ function Playlist(props) {
 
   return (
     <>
-      <div className="playlist-container">
+      <div className="playlistcontainer">
         {/* // this is the input field for the playlist */}
         <input value={playlistName} onChange={handleNameChange} />
         {/* // this displays the playlist name */}

@@ -36,18 +36,30 @@ function App() {
   };
 
   return (
-    <div className={styles.App}>
-      <h1>Jammming </h1>
-      <LoginButton />
+    <>
+      <div className={styles.App}>
+        <div className={styles.title}>
+          <h1>Jammming </h1>
+        </div>
 
-      <SearchBar />
-      <SearchResults addTrack={addTrack} />
-      <Playlist
-        playlistName={playlistName}
-        playlistTracks={playlistTracks}
-        savePlaylist={savePlaylist}
-      />
-    </div>
+        <div className={styles.loginbutton}>
+          <LoginButton />
+        </div>
+        <div className={styles.searchbar}>
+          <SearchBar />
+        </div>
+        <div className={styles.searchresults}>
+          <SearchResults addTrack={addTrack} />
+        </div>
+        <div className={styles.playlists}>
+          <Playlist
+            playlistName={playlistName}
+            playlistTracks={playlistTracks}
+            savePlaylist={savePlaylist}
+          />
+        </div>
+      </div>
+    </>
   );
 }
 

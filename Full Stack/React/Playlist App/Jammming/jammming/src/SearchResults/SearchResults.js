@@ -1,4 +1,4 @@
-import "./SearchResults.css";
+import styles from "./SearchResults.module.css";
 import { useState } from "react";
 import Tracklist from "../Tracklist/Tracklist";
 
@@ -11,11 +11,9 @@ function SearchResults({ addTrack }) {
   // The Tracklist component receives the tracks state and the addTrack function as props
   return (
     <>
-      <div className="search-results-container">
-        <div className="search-results">
-          Search Results
-          <Tracklist tracks={tracks} addTrack={addTrack} />
-        </div>
+      <div className={styles.searchresults}>
+        Search Results
+        <Tracklist tracks={tracks} addTrack={addTrack} />
       </div>
     </>
   );
