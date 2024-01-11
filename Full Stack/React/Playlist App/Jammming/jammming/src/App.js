@@ -10,8 +10,17 @@ import Tracklist from "./Tracklist/Tracklist";
 
 function App() {
   console.log("App component is rendering");
-  const [playlistName, setPlaylistName] = useState("My Playlists");
+  const [playlistName, setPlaylistName] = useState("Create New Playlist");
   const [playlistTracks, setPlaylistTracks] = useState([]);
+  const [searchResults, setSearchResults] = useState([]);
+
+  function handleSearch(data) {
+    if (data.tracks) {
+      setSearchResults(data.tracks.items);
+    } else {
+      console.log("data.tracks is undefined");
+    }
+  }
 
   // adding a track to playlist
   function addTrack(track) {
@@ -46,10 +55,10 @@ function App() {
           <LoginButton />
         </div>
         <div className={styles.searchbar}>
-          <SearchBar />
+          <SearchBar onSearch={handleSearch} />
         </div>
         <div className={styles.searchresults}>
-          <SearchResults addTrack={addTrack} />
+          <SearchResults addTrack={addTrack} searchResults={searchResults} />
         </div>
         <div className={styles.playlists}>
           <Playlist

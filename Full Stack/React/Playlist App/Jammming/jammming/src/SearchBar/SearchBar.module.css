@@ -1,5 +1,4 @@
-/* .searchbar {
-  grid-area: search;
-  border: 2px solid blue;
-  background-color: aqua;
-} */
+.searchbar {
+  display: flex;
+  flex-direction: column;
+}

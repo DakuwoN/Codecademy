@@ -16,7 +16,7 @@ function SearchBar(props) {
     // prevents default behavior
     event.preventDefault();
     // fetching data from spotify api
-    fetch("https://api.spotify.com/v1/search?q=" + searchTerm + "&type=track", {
+    fetch(`https://api.spotify.com/v1/search?q=${searchTerm}&type=track`, {
       headers: {
         // including the access token in the header
         Authorization: "Bearer " + props.accessToken,
@@ -25,7 +25,7 @@ function SearchBar(props) {
       // parsing the response as JSON
       .then((response) => response.json())
       // loggin the data to the console
-      .then((data) => console.log(data));
+      .then((data) => props.onSearch(data));
   }
 
   return (

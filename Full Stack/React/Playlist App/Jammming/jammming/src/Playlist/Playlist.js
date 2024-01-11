@@ -63,7 +63,7 @@ function Playlist(props) {
         {/* // this is the input field for the playlist */}
         <input value={playlistName} onChange={handleNameChange} />
         {/* // this displays the playlist name */}
-        <h2>{props.playlistName}</h2>
+        {/* <h2>{props.playlistName}</h2> */}
         {/* // maps over the array of playlists tracks */}
         {props.playlistTracks.map((track, index) => (
           <div key={index}>
