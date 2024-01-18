@@ -1,44 +1,22 @@
 import { useState } from "react";
-import styles from "./SearchBar.module.css";
 
-function SearchBar(props) {
-  console.log("App component is rendering");
-
+function SearchBar({ onSearch }) {
   const [searchTerm, setSearchTerm] = useState("");
 
-  // function to handle changes in the input form
-  function handleInputchange(event) {
-    setSearchTerm(event.target.value);
-  }
+  const handleChange = ({ target }) => setSearchTerm(target.value);
 
-  // function to handle form submisison
-  function handleSubmit(event) {
-    // prevents default behavior
+  const handleSubmit = (event) => {
     event.preventDefault();
-    // fetching data from spotify api
-    fetch(`https://api.spotify.com/v1/search?q=${searchTerm}&type=track`, {
-      headers: {
-        // including the access token in the header
-        Authorization: "Bearer " + props.accessToken,
-      },
-    })
-      // parsing the response as JSON
-      .then((response) => response.json())
-      // loggin the data to the console
-      .then((data) => props.onSearch(data));
-  }
+    onSearch(searchTerm);
+  };
 
   return (
-    // form element with onsubmit handler
-    <form className="searchbar" onSubmit={handleSubmit}>
-      {/* // input field with onChange handler */}
-      <input
-        type="text"
-        onChange={handleInputchange}
-        placeholder="Artist, Song, Genre"
-      />
-      <button type="submit">Search</button>
-    </form>
+    <>
+      <form onSubmit={handleSubmit}>
+        <input type="text" value={searchTerm} onChange={handleChange} />
+        <button type="submit">Search</button>
+      </form>
+    </>
   );
 }
 

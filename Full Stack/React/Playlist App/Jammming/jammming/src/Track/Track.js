@@ -1,25 +1,11 @@
-import styles from "./Track.module.css";
-
-// Responsible for displaying track data
+// Responsible for displaying track information
 function Track(props) {
-  console.log("App component is rendering");
-  // addTrack function uses the addTrack function passed as a prop
-  // to add the current track (also passed as a prop) to the playlist
-  const addTrack = () => {
-    props.addTrack(props.track);
-  };
-
   return (
     <>
-      <div className="track">
-        // display the artist, track name, and album name
-        <p>{props.track.artist}</p>
-        <p>{props.track.name}</p>
-        <p>{props.track.album}</p>
-        <div className="add-track">
-          // add song button uses the addTrack function when clicked
-          <button onClick={addTrack}>Add Song</button>
-        </div>
+      <div className="trackinfo">
+        <p>{props.songInfo[0].songName}</p>
+        <p>{props.songInfo[0].artist}</p>
+        <p>{props.songInfo[0].album}</p>
       </div>
     </>
   );

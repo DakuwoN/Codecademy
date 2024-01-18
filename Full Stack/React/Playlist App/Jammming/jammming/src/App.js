@@ -1,73 +1,32 @@
-import styles from "./App.module.css";
+import Track from "./Track/Track";
 import SearchBar from "./SearchBar/SearchBar";
-import LoginButton from "./Login/LoginButton";
 import SearchResults from "./SearchResults/SearchResults";
-import Playlist from "./Playlist/Playlist";
 
 import { useState } from "react";
-import Track from "./Track/Track";
-import Tracklist from "./Tracklist/Tracklist";
+// import SearchResults from "./SearchResults/SearchResults";
 
 function App() {
-  console.log("App component is rendering");
-  const [playlistName, setPlaylistName] = useState("Create New Playlist");
-  const [playlistTracks, setPlaylistTracks] = useState([]);
-  const [searchResults, setSearchResults] = useState([]);
+  const [results, setResults] = useState([]);
 
-  function handleSearch(data) {
-    if (data.tracks) {
-      setSearchResults(data.tracks.items);
-    } else {
-      console.log("data.tracks is undefined");
-    }
-  }
-
-  // adding a track to playlist
-  function addTrack(track) {
-    if (!playlistTracks.includes(track)) {
-      setPlaylistTracks((prevTracks) => [...prevTracks, track]);
-    }
-  }
-  // removing a track from playlist
-  function removeTrack(track) {
-    setPlaylistTracks((prevTracks) =>
-      prevTracks.filter((t) => t.id !== track.id)
-    );
-  }
-
-  // function for saving the playlist
-  const savePlaylist = () => {
-    // creates array of track URI's
-    const trackURIs = props.playlistTracks.map((track) => track.uri);
-    console.log(trackURIs); // replace with call to spotify
-    setPlaylistName("Create New Playlist"); // resets playlist name to Create New Playlist
-    props.savePlaylist(); // Calls the onSave function passed as a prop
+  const handleSearch = (searchTerm) => {
+    // Do something with API
+    setResults([searchTerm]);
   };
+
+  const trackObj = [
+    {
+      artist: "Alicia Keys",
+      songName: "Girl on Fire",
+      album: "Unknown",
+      ID: 1,
+    },
+  ];
 
   return (
     <>
-      <div className={styles.App}>
-        <div className={styles.title}>
-          <h1>Jammming </h1>
-        </div>
-
-        <div className={styles.loginbutton}>
-          <LoginButton />
-        </div>
-        <div className={styles.searchbar}>
-          <SearchBar onSearch={handleSearch} />
-        </div>
-        <div className={styles.searchresults}>
-          <SearchResults addTrack={addTrack} searchResults={searchResults} />
-        </div>
-        <div className={styles.playlists}>
-          <Playlist
-            playlistName={playlistName}
-            playlistTracks={playlistTracks}
-            savePlaylist={savePlaylist}
-          />
-        </div>
-      </div>
+      <Track songInfo={trackObj} />
+      <SearchBar onSearch={handleSearch} />
+      <SearchResults results={results} />
     </>
   );
 }

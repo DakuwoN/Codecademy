@@ -1,20 +1,9 @@
-import styles from "./SearchResults.module.css";
-import { useState } from "react";
-import Tracklist from "../Tracklist/Tracklist";
-
-// this function gets the search results
-function SearchResults({ addTrack }) {
-  console.log("App component is rendering");
-
-  const [tracks, setTracks] = useState([]);
-  // component returns a div with the search results and a Tracklist component
-  // The Tracklist component receives the tracks state and the addTrack function as props
+function SearchResults({ results }) {
   return (
     <>
-      <div className={styles.searchresults}>
-        Search Results
-        <Tracklist tracks={tracks} addTrack={addTrack} />
-      </div>
+      {results.map((result, index) => (
+        <Tracklist key={index} track={result} />
+      ))}
     </>
   );
 }
