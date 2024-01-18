@@ -1,8 +1,12 @@
-function SearchResults({ results }) {
+function SearchResults({ results, addTrackToPlaylist }) {
   return (
     <>
       {results.map((result, index) => (
-        <Tracklist key={index} track={result} />
+        <Tracklist
+          key={index}
+          track={result}
+          addTrackToPlaylist={addTrackToPlaylist}
+        />
       ))}
     </>
   );
