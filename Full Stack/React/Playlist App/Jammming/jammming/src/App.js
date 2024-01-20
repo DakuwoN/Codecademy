@@ -4,7 +4,6 @@ import SearchResults from "./SearchResults/SearchResults";
 import Playlist from "./Playlist/Playlist";
 
 import { useState } from "react";
-// import SearchResults from "./SearchResults/SearchResults";
 
 function App() {
   // state for the playlist
@@ -12,8 +11,12 @@ function App() {
   const [playlistTracks, setPlaylistTracks] = useState([]);
   // function to add a song to the playlist
   const addTrackToPlaylist = (track) => {
-    setPlaylistTracks((prevTracks) => [...prevTracks, track]);
-    playlistTracks.some((playlistTrack) => playlistTrack.id === track.id); // finished off here
+    const isTrackInPlaylist = playlistTracks.some(
+      (playlistTrack) => playlistTrack.id === track.id
+    );
+    if (!isTrackInPlaylist) {
+      setPlaylistTracks((prevTracks) => [...prevTracks, track]);
+    }
   };
 
   // search results state
