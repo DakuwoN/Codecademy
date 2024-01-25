@@ -19,6 +19,12 @@ function App() {
     }
   };
 
+  const removeTrackFromPlaylist = (track) => {
+    setPlaylistTracks((prevTracks) =>
+      prevTracks.filter((t) => t.id !== track.id)
+    );
+  };
+
   // search results state
   const [results, setResults] = useState([]);
   // function to handle search results
@@ -38,7 +44,12 @@ function App() {
 
   return (
     <>
-      <Track songInfo={trackObj} />
+      <Track
+        songInfo={trackObj[0]}
+        addTrackToPlaylist={addTrackToPlaylist}
+        removeTrackFromPlaylist={removeTrackFromPlaylist}
+        playlistTracks={playlistTracks}
+      />
       <SearchBar onSearch={handleSearch} />
       <SearchResults results={results} onAdd={addTrackToPlaylist} />
       <Playlist
@@ -46,6 +57,7 @@ function App() {
         setPlaylistName={setPlaylistName}
         tracks={playlistTracks}
         addTrack={addTrackToPlaylist}
+        removeTrack={removeTrackFromPlaylist}
       />
     </>
   );

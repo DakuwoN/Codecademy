@@ -1,13 +1,9 @@
+import Tracklist from "../Tracklist/Tracklist";
+
 function SearchResults({ results, addTrackToPlaylist }) {
   return (
     <>
-      {results.map((result, index) => (
-        <Tracklist
-          key={index}
-          track={result}
-          addTrackToPlaylist={addTrackToPlaylist}
-        />
-      ))}
+      <Tracklist tracks={results} addTrackToPlaylist={addTrackToPlaylist} />
     </>
   );
 }

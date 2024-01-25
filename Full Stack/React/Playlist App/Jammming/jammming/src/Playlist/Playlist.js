@@ -5,13 +5,12 @@ function Playlist({ name, setPlaylistName, tracks, addTrack }) {
     setPlaylistName(target.value);
   }
 
-  tracks.map((track) => {
-    return <Track 
-  })
-
   return (
     <>
       <input type="text" value={name} onChange={handleChange} />
+      {tracks.map((track, index) => (
+        <Track key={index} songInfo={track} addTrackToPlaylist={addTrack} />
+      ))}
     </>
   );
 }

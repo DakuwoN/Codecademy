@@ -1,27 +1,40 @@
-import Playlist from "../Playlist/Playlist";
-
 // Responsible for displaying track information
-function Track({ songInfo, addTrackToPlaylist }) {
+function Track({
+  songInfo,
+  addTrackToPlaylist,
+  removeTrackFromPlaylist,
+  playlistTracks,
+}) {
   function handleClick() {
-    addTrackToPlaylist(songInfo[0]);
+    addTrackToPlaylist(songInfo);
   }
 
-  function addTrackToPlaylist(track) {
-    Playlist.push(track);
+  function handleRemove() {
+    removeTrackFromPlaylist(songInfo);
   }
+
+  let isRemovable = playlistTracks.some(
+    (playlistTrack) => playlistTrack.id === songInfo.id
+  );
 
   return (
     <>
       <div className="trackinfo">
-        <p>{songInfo[0].songName}</p>
-        <p>{songInfo[0].artist}</p>
-        <p>{songInfo[0].album}</p>
+        <p>{songInfo.songName}</p>
+        <p>{songInfo.artist}</p>
+        <p>{songInfo.album}</p>
       </div>
-      <div className="addbutton">
-        <button type="submit" onClick={addTrackToPlaylist(track)}>
-          +
-        </button>
-      </div>
+      {isRemovable ? (
+        <div className="removebutton">
+          <button onClick={handleRemove}>Remove Song</button>
+        </div>
+      ) : (
+        <div className="addbutton">
+          <button type="submit" onClick={handleClick}>
+            +
+          </button>
+        </div>
+      )}
     </>
   );
 }
