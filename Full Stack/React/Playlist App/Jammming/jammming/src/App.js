@@ -2,10 +2,18 @@ import Track from "./Track/Track";
 import SearchBar from "./SearchBar/SearchBar";
 import SearchResults from "./SearchResults/SearchResults";
 import Playlist from "./Playlist/Playlist";
-
-import { useState } from "react";
+import LoginButton from "./Login/LoginButton";
+import Spotify from "./Spotify/Spotify";
+import { useState, useEffect } from "react";
 
 function App() {
+  // runs once for the spotify login
+  useEffect(() => {
+    if (!Spotify.isAccessTokenValid()) {
+      Spotify.getAccessToken();
+    }
+  }, []);
+
   // state for the playlist
   const [playlistName, setPlaylistName] = useState("Create New Playlist");
   const [playlistTracks, setPlaylistTracks] = useState([]);
@@ -44,6 +52,7 @@ function App() {
 
   return (
     <>
+      <LoginButton />
       <Track
         songInfo={trackObj[0]}
         addTrackToPlaylist={addTrackToPlaylist}
