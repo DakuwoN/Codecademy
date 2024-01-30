@@ -26,6 +26,7 @@ function App() {
       setPlaylistTracks((prevTracks) => [...prevTracks, track]);
     }
   };
+  console.log(typeof addTrackToPlaylist);
 
   const removeTrackFromPlaylist = (track) => {
     setPlaylistTracks((prevTracks) =>
@@ -37,8 +38,38 @@ function App() {
   const [results, setResults] = useState([]);
   // function to handle search results
   const handleSearch = (searchTerm) => {
+    const yourAccessToken =
+      "BQCY-PSTfiEgBkAggJfcFen7G2Tz41M1RXs0B8Z36Bo9wnk6fzrv0LrOFm9Aaxu0lev5cDtMGWBaKE7jQB7_vn_9mz3TyCbbBDLuL1ToqZE3Qts-MsvmRF3lY9dn_DkS4OOdfPzrP5mU3P5PbGtpoHXk3pj6PCeezky6lUsNYgeL2hj0YV3uDLIs22dhNhM_0I8Sy7o7HGwVF4VO3qY";
     // Do something with API
-    setResults([searchTerm]);
+    fetch(`https://api.spotify.com/v1/search?q=${searchTerm}&type=track`, {
+      headers: {
+        Authorization: "Bearer " + yourAccessToken,
+      },
+    })
+      .then(
+        (response) => {
+          if (response.ok) {
+            return response.json();
+          }
+          throw new Error("Request failed");
+        },
+        (networkError) => console.log(networkError.message)
+      )
+      .then((jsonResponse) => {
+        //code to execute?
+        if (jsonResponse.tracks) {
+          let trackData = jsonResponse.tracks.items.map((track) => ({
+            id: track.id,
+            name: track.name,
+            artist: track.artists[0].name,
+            album: track.album.name,
+            uri: track.uri,
+          }));
+          setResults(trackData);
+        } else {
+          setResults([]);
+        }
+      });
   };
 
   const trackObj = [

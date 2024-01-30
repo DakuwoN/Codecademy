@@ -5,6 +5,7 @@ function Track({
   removeTrackFromPlaylist,
   playlistTracks = [],
 }) {
+  console.log(typeof addTrackToPlaylist);
   function handleClick() {
     addTrackToPlaylist(songInfo);
   }

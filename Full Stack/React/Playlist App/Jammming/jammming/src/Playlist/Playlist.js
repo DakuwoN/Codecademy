@@ -1,7 +1,7 @@
 import Track from "../Track/Track";
 // import { savePlaylistToSpotify } from "../Spotify/Spotify";
 
-function Playlist({ name, setPlaylistName, tracks, addTrack }) {
+function Playlist({ name, setPlaylistName, tracks, addTrackToPlaylist }) {
   function handleChange({ target }) {
     setPlaylistName(target.value);
   }
@@ -19,7 +19,11 @@ function Playlist({ name, setPlaylistName, tracks, addTrack }) {
     <>
       <input type="text" value={name} onChange={handleChange} />
       {tracks.map((track, index) => (
-        <Track key={index} songInfo={track} addTrackToPlaylist={addTrack} />
+        <Track
+          key={index}
+          songInfo={track}
+          addTrackToPlaylist={addTrackToPlaylist}
+        />
       ))}
       <button onClick={handleSaveToSpotify}>Save To Spotify</button>
     </>
