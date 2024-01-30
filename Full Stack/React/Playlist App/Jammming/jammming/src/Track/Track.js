@@ -3,9 +3,9 @@ function Track({
   songInfo,
   addTrackToPlaylist,
   removeTrackFromPlaylist,
-  playlistTracks = [],
+  // playlistTracks = [],
+  isRemovable,
 }) {
-  console.log(typeof addTrackToPlaylist);
   function handleClick() {
     addTrackToPlaylist(songInfo);
   }
@@ -13,10 +13,6 @@ function Track({
   function handleRemove() {
     removeTrackFromPlaylist(songInfo);
   }
-  console.log(playlistTracks);
-  let isRemovable = playlistTracks.some(
-    (playlistTrack) => playlistTrack.id === songInfo.id
-  );
 
   return (
     <>

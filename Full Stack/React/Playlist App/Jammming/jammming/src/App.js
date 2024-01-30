@@ -39,7 +39,7 @@ function App() {
   // function to handle search results
   const handleSearch = (searchTerm) => {
     const yourAccessToken =
-      "BQCY-PSTfiEgBkAggJfcFen7G2Tz41M1RXs0B8Z36Bo9wnk6fzrv0LrOFm9Aaxu0lev5cDtMGWBaKE7jQB7_vn_9mz3TyCbbBDLuL1ToqZE3Qts-MsvmRF3lY9dn_DkS4OOdfPzrP5mU3P5PbGtpoHXk3pj6PCeezky6lUsNYgeL2hj0YV3uDLIs22dhNhM_0I8Sy7o7HGwVF4VO3qY";
+      "BQBnJfhCDBYZaQXb3G9pnlFK_nbiWFRBI5jS-0ltaWEQq32hJz3mxq3w_lf3w9KAqabK-JiOlA1A7bMJK7L0XXx8DtibMAq9_dPRouFa0bQEDoTEoAPJs1sR5h6KbfSQDdoNG7qFXoY6AyMm6kh5EwgpHPocSFF-j6aIoTaKdQesHDc2fVfpQb9gKsP-TNbBaqs0vc_4f0pPfl6as2s";
     // Do something with API
     fetch(`https://api.spotify.com/v1/search?q=${searchTerm}&type=track`, {
       headers: {
@@ -72,31 +72,39 @@ function App() {
       });
   };
 
-  const trackObj = [
-    {
-      artist: "Alicia Keys",
-      songName: "Girl on Fire",
-      album: "Unknown",
-      id: 1,
-    },
-  ];
+  // const trackObj = [
+  //   {
+  //     artist: "Alicia Keys",
+  //     songName: "Girl on Fire",
+  //     album: "Unknown",
+  //     id: 1,
+  //   },
+  // ];
 
   return (
     <>
       <LoginButton />
-      <Track
-        songInfo={trackObj[0]}
-        addTrackToPlaylist={addTrackToPlaylist}
-        removeTrackFromPlaylist={removeTrackFromPlaylist}
-        playlistTracks={playlistTracks}
-      />
+      {results.map((track, index) => (
+        <Track
+          key={index}
+          songInfo={track}
+          addTrackToPlaylist={addTrackToPlaylist}
+          removeTrackFromPlaylist={removeTrackFromPlaylist}
+          isRemovable={playlistTracks.some(
+            (playlistTrack) => playlistTrack.id === track.id
+          )}
+        />
+      ))}
       <SearchBar onSearch={handleSearch} />
-      <SearchResults results={results} onAdd={addTrackToPlaylist} />
+      {/* <SearchResults
+        results={results}
+        addTrackToPlaylist={addTrackToPlaylist}
+      /> */}
       <Playlist
         name={playlistName}
         setPlaylistName={setPlaylistName}
         tracks={playlistTracks}
-        addTrack={addTrackToPlaylist}
+        addTrackToPlaylist={addTrackToPlaylist}
         removeTrack={removeTrackFromPlaylist}
       />
     </>
