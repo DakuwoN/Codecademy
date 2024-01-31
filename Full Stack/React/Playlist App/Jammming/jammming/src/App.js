@@ -26,7 +26,6 @@ function App() {
       setPlaylistTracks((prevTracks) => [...prevTracks, track]);
     }
   };
-  console.log(typeof addTrackToPlaylist);
 
   const removeTrackFromPlaylist = (track) => {
     setPlaylistTracks((prevTracks) =>
@@ -39,7 +38,7 @@ function App() {
   // function to handle search results
   const handleSearch = (searchTerm) => {
     const yourAccessToken =
-      "BQBnJfhCDBYZaQXb3G9pnlFK_nbiWFRBI5jS-0ltaWEQq32hJz3mxq3w_lf3w9KAqabK-JiOlA1A7bMJK7L0XXx8DtibMAq9_dPRouFa0bQEDoTEoAPJs1sR5h6KbfSQDdoNG7qFXoY6AyMm6kh5EwgpHPocSFF-j6aIoTaKdQesHDc2fVfpQb9gKsP-TNbBaqs0vc_4f0pPfl6as2s";
+      "BQBfM7UW12aglXn5iFT59JEkDr5M_EkxxlD787swesmLBThJOykdLHQTkX2Knv6P31_atvooxJWQJ2JkPNTeV-UlvRD3th_91jOTGPjUChiExCgdKQ5XEd880ox6B13GhB_HjTO0JOoNXWOjJ36Fxx0L7NopcTCZtBgXL8rF-ex6BJYCypd8lEb1YPBpB6QaDGq0b6FpR6F2mAh13EM";
     // Do something with API
     fetch(`https://api.spotify.com/v1/search?q=${searchTerm}&type=track`, {
       headers: {
@@ -84,28 +83,19 @@ function App() {
   return (
     <>
       <LoginButton />
-      {results.map((track, index) => (
-        <Track
-          key={index}
-          songInfo={track}
-          addTrackToPlaylist={addTrackToPlaylist}
-          removeTrackFromPlaylist={removeTrackFromPlaylist}
-          isRemovable={playlistTracks.some(
-            (playlistTrack) => playlistTrack.id === track.id
-          )}
-        />
-      ))}
+
       <SearchBar onSearch={handleSearch} />
-      {/* <SearchResults
+      <SearchResults
         results={results}
+        playlistTracks={playlistTracks}
         addTrackToPlaylist={addTrackToPlaylist}
-      /> */}
+      />
       <Playlist
         name={playlistName}
         setPlaylistName={setPlaylistName}
         tracks={playlistTracks}
         addTrackToPlaylist={addTrackToPlaylist}
-        removeTrack={removeTrackFromPlaylist}
+        removeTrackFromPlaylist={removeTrackFromPlaylist}
       />
     </>
   );

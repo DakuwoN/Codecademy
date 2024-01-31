@@ -1,9 +1,13 @@
 import Tracklist from "../Tracklist/Tracklist";
 
-function SearchResults({ results, addTrackToPlaylist }) {
+function SearchResults({ results, playlistTracks, addTrackToPlaylist }) {
   return (
     <>
-      <Tracklist tracks={results} addTrackToPlaylist={addTrackToPlaylist} />
+      <Tracklist
+        tracks={results}
+        addTrackToPlaylist={addTrackToPlaylist}
+        playlistTracks={playlistTracks}
+      />
     </>
   );
 }

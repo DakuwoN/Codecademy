@@ -3,9 +3,10 @@ function Track({
   songInfo,
   addTrackToPlaylist,
   removeTrackFromPlaylist,
-  // playlistTracks = [],
+  playlistTracks = [],
   isRemovable,
 }) {
+  console.log(songInfo);
   function handleClick() {
     addTrackToPlaylist(songInfo);
   }
@@ -17,7 +18,7 @@ function Track({
   return (
     <>
       <div className="trackinfo">
-        <p>{songInfo.songName}</p>
+        <p>{songInfo.name}</p>
         <p>{songInfo.artist}</p>
         <p>{songInfo.album}</p>
       </div>
