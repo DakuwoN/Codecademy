@@ -1,5 +1,6 @@
 import Track from "../Track/Track";
-// import { savePlaylistToSpotify } from "../Spotify/Spotify";
+
+import Spotify from "../Spotify/Spotify";
 
 function Playlist({
   name,
@@ -20,9 +21,10 @@ function Playlist({
 
   function handleSaveToSpotify() {
     const trackURIs = getTrackURIs(tracks);
-    // savePlaylistToSpotify(name, trackURIs);
+    console.log(trackURIs);
+    Spotify.savePlaylistToSpotify(name, trackURIs);
   }
-  console.log(tracks);
+
   return (
     <>
       <input type="text" value={name} onChange={handleChange} />

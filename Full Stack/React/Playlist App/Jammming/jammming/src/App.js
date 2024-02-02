@@ -37,8 +37,7 @@ function App() {
   const [results, setResults] = useState([]);
   // function to handle search results
   const handleSearch = (searchTerm) => {
-    const yourAccessToken =
-      "BQBfM7UW12aglXn5iFT59JEkDr5M_EkxxlD787swesmLBThJOykdLHQTkX2Knv6P31_atvooxJWQJ2JkPNTeV-UlvRD3th_91jOTGPjUChiExCgdKQ5XEd880ox6B13GhB_HjTO0JOoNXWOjJ36Fxx0L7NopcTCZtBgXL8rF-ex6BJYCypd8lEb1YPBpB6QaDGq0b6FpR6F2mAh13EM";
+    const yourAccessToken = "";
     // Do something with API
     fetch(`https://api.spotify.com/v1/search?q=${searchTerm}&type=track`, {
       headers: {

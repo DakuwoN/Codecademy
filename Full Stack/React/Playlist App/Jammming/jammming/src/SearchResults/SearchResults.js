@@ -1,5 +1,5 @@
 import Tracklist from "../Tracklist/Tracklist";
-
+// grabs the search results and passes to tracklist
 function SearchResults({ results, playlistTracks, addTrackToPlaylist }) {
   return (
     <>

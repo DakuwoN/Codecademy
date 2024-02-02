@@ -6,7 +6,6 @@ function Track({
   playlistTracks = [],
   isRemovable,
 }) {
-  console.log(songInfo);
   function handleClick() {
     addTrackToPlaylist(songInfo);
   }

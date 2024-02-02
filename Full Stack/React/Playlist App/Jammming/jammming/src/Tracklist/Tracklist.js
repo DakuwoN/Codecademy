@@ -1,14 +1,13 @@
 import Track from "../Track/Track";
-
-function Tracklist({
-  tracks,
-  playlistTracks,
-
-  addTrackToPlaylist,
-}) {
+// renders the search results
+function Tracklist({ tracks, playlistTracks, addTrackToPlaylist }) {
+  let songsAdded = tracks.filter(
+    (track) =>
+      !playlistTracks.some((playlistTrack) => track.id === playlistTrack.id)
+  );
   return (
     <>
-      {tracks.map((track, index) => (
+      {songsAdded.map((track, index) => (
         <Track
           key={index}
           songInfo={track}

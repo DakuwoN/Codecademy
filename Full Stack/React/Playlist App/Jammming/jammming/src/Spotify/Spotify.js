@@ -38,56 +38,50 @@ const Spotify = {
 
     return accessToken && expirationTime && Date.now() < expirationTime;
   },
+
+  savePlaylistToSpotify(playlist) {
+    // Code to save playlist to Spotify...
+    fetch("https://api.spotify.com/v1/me", {
+      headers: {
+        Authorization: "Bearer " + yourAccessToken,
+      },
+    })
+      .then(
+        (response) => {
+          if (response.ok) {
+            return response.json();
+          }
+          throw new Error("Request failed");
+        },
+        (networkError) => console.log(networkError.message)
+      )
+      .then((jsonResponse) => {
+        let userId = jsonResponse.id;
+        if (userId) {
+          fetch(`https://api.spotify.com/v1/users/${userId}/playlists`, {
+            method: "POST",
+            headers: {
+              Authorization: "Bearer " + yourAccessToken,
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ name: playlist }),
+          })
+            .then((response) => {
+              if (response.ok) {
+                return response.json();
+              }
+              throw new Error("Request failed");
+            })
+            .then((playlistResponse) => {
+              // Handle the response from the playlist creation
+              console.log("Playlist created successfully:", playlistResponse);
+            })
+            .catch((error) => {
+              console.error("Error creating playlist:", error);
+            });
+        }
+      });
+  },
 };
 
 export default Spotify;
-
-// const getAuthorizationUrl = () => {
-//     const accessUrl = `https://accounts.spotify.com/authorize?client_id=${clientId}&response_type=token&scope=playlist-modify-public&redirect_uri=${encodeURIComponent(
-//       redirectUri
-//     )}`;
-//     return accessUrl;
-//   };
-
-// const Spotify = {
-//   // this method gets the users access token
-
-//   getAccessToken() {
-//     if (accessToken) {
-//       return accessToken;
-//     }
-
-//     // Check for an access token match and expiry time
-//     const accessTokenMatch = window.location.href.match(/access_token=([^&]*)/);
-
-//     const expiresInMatch = window.location.href.match(/expires_in=([^&]*)/);
-
-//     // if it finds both
-
-//     if (accessTokenMatch && expiresInMatch) {
-//       // sets accessToken and sets a timer to clear it when it expires
-//       accessToken = accessTokenMatch[1];
-//       const expiresIn = Number(expiresInMatch[1]);
-//       // This clears the parameters, allowing us to grab a new access token when it expires.
-
-//       window.setTimeout(() => (accessToken = ""), expiresIn * 1000);
-
-//       window.history.pushState("Access Token", null, "/");
-
-//       return accessToken;
-//     } else {
-//       // if it doesnt find both, it redirects the user to Spotifys login page
-//       const accessUrl = `https://accounts.spotify.com/authorize?client_id=${clientId}&response_type=token&scope=playlist-modify-public&redirect_uri=${encodeURIComponent(
-//         redirectUri
-//       )}`;
-
-//       window.location = accessUrl;
-//     }
-//   },
-// };
-
-// export default Spotify;
-
-// export const savePlaylistToSpotify = (playlist) => {
-//   // Code to save playlist to Spotify...
-// };
