@@ -4,19 +4,21 @@ import SearchResults from "./SearchResults/SearchResults";
 import Playlist from "./Playlist/Playlist";
 import LoginButton from "./Login/LoginButton";
 import Spotify from "./Spotify/Spotify";
+
 import { useState, useEffect } from "react";
 
 function App() {
   // runs once for the spotify login
   useEffect(() => {
     if (!Spotify.isAccessTokenValid()) {
-      Spotify.getAccessToken();
+      setAccessToken(Spotify.getAccessToken());
     }
   }, []);
 
   // state for the playlist
   const [playlistName, setPlaylistName] = useState("Create New Playlist");
   const [playlistTracks, setPlaylistTracks] = useState([]);
+  const [accessToken, setAccessToken] = useState("");
   // function to add a song to the playlist
   const addTrackToPlaylist = (track) => {
     const isTrackInPlaylist = playlistTracks.some(
@@ -37,7 +39,8 @@ function App() {
   const [results, setResults] = useState([]);
   // function to handle search results
   const handleSearch = (searchTerm) => {
-    const yourAccessToken = "";
+    const yourAccessToken =
+      "BQDRW5EbZMPEMce7FCFMmhbP4pruJ81e0z4aF5G-oyZYaIjrIltyzY9UvFIfOPKW-NHvxCxfaTBw1zjzAvFbMMbadiA1ox6TZV73QGWiUUkWWCU8_6GijAx7SrmDCmaoXeLBwMBNBtKMkPWS53JFhuxrxMHQcluGN45q5w0ns0N1CqnV1vgtX2iN9uym9Be1AoiIWRdh4qp_5WFTACg";
     // Do something with API
     fetch(`https://api.spotify.com/v1/search?q=${searchTerm}&type=track`, {
       headers: {
@@ -95,6 +98,7 @@ function App() {
         tracks={playlistTracks}
         addTrackToPlaylist={addTrackToPlaylist}
         removeTrackFromPlaylist={removeTrackFromPlaylist}
+        accessToken={accessToken}
       />
     </>
   );

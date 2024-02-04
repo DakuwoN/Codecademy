@@ -5,7 +5,10 @@ import Spotify from "../Spotify/Spotify";
 function Playlist({
   name,
   setPlaylistName,
-  tracks,
+  tracks = [
+    "spotify:track:6jG2YzhxptolDzLHTGLt7S",
+    "spotify:track:02M6vucOvmRfMxTXDUwRXu",
+  ],
   addTrackToPlaylist,
   removeTrackFromPlaylist,
 }) {
@@ -21,8 +24,9 @@ function Playlist({
 
   function handleSaveToSpotify() {
     const trackURIs = getTrackURIs(tracks);
-    console.log(trackURIs);
+
     Spotify.savePlaylistToSpotify(name, trackURIs);
+    console.log(Spotify.savePlaylistToSpotify(name, trackURIs));
   }
 
   return (

@@ -1,5 +1,3 @@
-// Spotify.js
-
 const clientId = "#";
 const redirectUri = "http://localhost:3000"; // Set this to your redirect URI
 
@@ -39,48 +37,103 @@ const Spotify = {
     return accessToken && expirationTime && Date.now() < expirationTime;
   },
 
-  savePlaylistToSpotify(playlist) {
-    // Code to save playlist to Spotify...
-    fetch("https://api.spotify.com/v1/me", {
-      headers: {
-        Authorization: "Bearer " + yourAccessToken,
-      },
-    })
-      .then(
-        (response) => {
-          if (response.ok) {
-            return response.json();
-          }
-          throw new Error("Request failed");
+  // savePlaylistToSpotify(name, trackURIs) {
+  //   if (!name || !trackURIs.length) {
+  //     return;
+  //   }
+
+  //   const accessToken = Spotify.getAccessToken();
+  //   const headers = { Authorization: `Bearer ${accessToken}` };
+  //   let userID;
+
+  //   return fetch("https://api.spotify.com/v1/me", { headers: headers })
+  //     .then((response) => response.json())
+  //     .then((jsonResponse) => {
+  //       userID = jsonResponse.id;
+  //       return fetch(`https://api.spotify.com/v1/users/${userID}/playlists`, {
+  //         headers: headers,
+  //         method: "POST",
+  //         body: JSON.stringify({ name: name }),
+  //       })
+  //         .then((response) => response.json())
+  //         .then((jsonResponse) => {
+  //           const playlistID = jsonResponse.id;
+  //           return fetch(
+  //             `https://api.spotify.com/v1/users/${userID}/playlists/${playlistID}/tracks`,
+  //             {
+  //               headers: headers,
+  //               method: "POST",
+  //               body: JSON.stringify({ uris: trackURIs }),
+  //             }
+  //           );
+  //         });
+  //     });
+  // },
+
+  async savePlaylistToSpotify(playlistName, trackURIs, accessToken) {
+    try {
+      if (!accessToken) {
+        throw new Error("Access token not available or expired.");
+      }
+
+      const userResponse = await fetch("https://api.spotify.com/v1/me", {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
         },
-        (networkError) => console.log(networkError.message)
-      )
-      .then((jsonResponse) => {
-        let userId = jsonResponse.id;
-        if (userId) {
-          fetch(`https://api.spotify.com/v1/users/${userId}/playlists`, {
+      });
+
+      if (!userResponse.ok) {
+        throw new Error("Unable to fetch user data");
+      }
+
+      const jsonResponse = await userResponse.json();
+      const userId = jsonResponse.id;
+
+      if (!userId) {
+        throw new Error("Unable to retrieve user ID");
+      }
+
+      const playlistResponse = await fetch(
+        `https://api.spotify.com/v1/users/${userId}/playlists`,
+        {
+          method: "POST",
+          headers: {
+            Authorization: `Bearer ${accessToken}`,
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ name: playlistName }),
+        }
+      );
+
+      if (!playlistResponse.ok) {
+        throw new Error("Unable to create playlist");
+      }
+
+      const playlistJsonResponse = await playlistResponse.json();
+      const playlistId = playlistJsonResponse.id;
+
+      if (playlistId) {
+        const addTracksResponse = await fetch(
+          `https://api.spotify.com/v1/playlists/${playlistId}/tracks`,
+          {
             method: "POST",
             headers: {
-              Authorization: "Bearer " + yourAccessToken,
+              Authorization: `Bearer ${accessToken}`,
               "Content-Type": "application/json",
             },
-            body: JSON.stringify({ name: playlist }),
-          })
-            .then((response) => {
-              if (response.ok) {
-                return response.json();
-              }
-              throw new Error("Request failed");
-            })
-            .then((playlistResponse) => {
-              // Handle the response from the playlist creation
-              console.log("Playlist created successfully:", playlistResponse);
-            })
-            .catch((error) => {
-              console.error("Error creating playlist:", error);
-            });
+            body: JSON.stringify({ uris: trackURIs }),
+          }
+        );
+
+        if (!addTracksResponse.ok) {
+          throw new Error("Unable to add tracks to the playlist");
         }
-      });
+
+        console.log("Playlist saved successfully!");
+      }
+    } catch (error) {
+      console.error("Error:", error.message);
+    }
   },
 };
 
