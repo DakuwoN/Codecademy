@@ -40,7 +40,7 @@ function App() {
   // function to handle search results
   const handleSearch = (searchTerm) => {
     const yourAccessToken =
-      "BQDRW5EbZMPEMce7FCFMmhbP4pruJ81e0z4aF5G-oyZYaIjrIltyzY9UvFIfOPKW-NHvxCxfaTBw1zjzAvFbMMbadiA1ox6TZV73QGWiUUkWWCU8_6GijAx7SrmDCmaoXeLBwMBNBtKMkPWS53JFhuxrxMHQcluGN45q5w0ns0N1CqnV1vgtX2iN9uym9Be1AoiIWRdh4qp_5WFTACg";
+      "BQB1QdnAZdWYOg8OZc36IwLmUDI-uZ0UdVi2m0rpQwCRWHZM93tILQlOQZ_APNOYJOi763hk6NQZZtTkyIBhVu6wuzW5zL4e8XicFczYzj97y9mQhWDlMSAadW_azpHF_rq8L6g5-ceDkMt0pkCNSbrOd43xnn6r9ujuk_mEWDymiUH30mFSMkweIg0rWHgul2S7SS8U7Y9PVIeY-X4";
     // Do something with API
     fetch(`https://api.spotify.com/v1/search?q=${searchTerm}&type=track`, {
       headers: {

@@ -16,9 +16,13 @@ const Spotify = {
       return accessToken;
     } else {
       // Redirect the user to the Spotify login page
-      const accessUrl = `https://accounts.spotify.com/authorize?client_id=${clientId}&response_type=token&scope=user-read-private user-read-email&redirect_uri=${encodeURIComponent(
+      // const accessUrl = `https://accounts.spotify.com/authorize?client_id=${clientId}&response_type=token&scope=user-read-private user-read-email&redirect_uri=${encodeURIComponent(
+      //   redirectUri
+      // )}`;
+      const accessUrl = `https://accounts.spotify.com/authorize?client_id=${clientId}&response_type=token&scope=user-read-private user-read-email playlist-modify-public playlist-modify-private&redirect_uri=${encodeURIComponent(
         redirectUri
       )}`;
+
       window.location = accessUrl;
     }
   },
@@ -37,40 +41,7 @@ const Spotify = {
     return accessToken && expirationTime && Date.now() < expirationTime;
   },
 
-  // savePlaylistToSpotify(name, trackURIs) {
-  //   if (!name || !trackURIs.length) {
-  //     return;
-  //   }
-
-  //   const accessToken = Spotify.getAccessToken();
-  //   const headers = { Authorization: `Bearer ${accessToken}` };
-  //   let userID;
-
-  //   return fetch("https://api.spotify.com/v1/me", { headers: headers })
-  //     .then((response) => response.json())
-  //     .then((jsonResponse) => {
-  //       userID = jsonResponse.id;
-  //       return fetch(`https://api.spotify.com/v1/users/${userID}/playlists`, {
-  //         headers: headers,
-  //         method: "POST",
-  //         body: JSON.stringify({ name: name }),
-  //       })
-  //         .then((response) => response.json())
-  //         .then((jsonResponse) => {
-  //           const playlistID = jsonResponse.id;
-  //           return fetch(
-  //             `https://api.spotify.com/v1/users/${userID}/playlists/${playlistID}/tracks`,
-  //             {
-  //               headers: headers,
-  //               method: "POST",
-  //               body: JSON.stringify({ uris: trackURIs }),
-  //             }
-  //           );
-  //         });
-  //     });
-  // },
-
-  async savePlaylistToSpotify(playlistName, trackURIs, accessToken) {
+  async savePlaylistToSpotify(playlistData, trackURIs, accessToken) {
     try {
       if (!accessToken) {
         throw new Error("Access token not available or expired.");
@@ -101,7 +72,7 @@ const Spotify = {
             Authorization: `Bearer ${accessToken}`,
             "Content-Type": "application/json",
           },
-          body: JSON.stringify({ name: playlistName }),
+          body: JSON.stringify(playlistData),
         }
       );
 
@@ -133,6 +104,7 @@ const Spotify = {
       }
     } catch (error) {
       console.error("Error:", error.message);
+      // Handle the error, but don't call savePlaylistToSpotify again
     }
   },
 };

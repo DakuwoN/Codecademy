@@ -3,7 +3,7 @@ import Track from "../Track/Track";
 import Spotify from "../Spotify/Spotify";
 
 function Playlist({
-  name,
+  playlistName,
   setPlaylistName,
   tracks = [
     "spotify:track:6jG2YzhxptolDzLHTGLt7S",
@@ -12,7 +12,7 @@ function Playlist({
   addTrackToPlaylist,
   removeTrackFromPlaylist,
 }) {
-  // handles the playlist name change
+  // handles the playlist playlistName change
   function handleChange({ target }) {
     setPlaylistName(target.value);
   }
@@ -24,14 +24,19 @@ function Playlist({
 
   function handleSaveToSpotify() {
     const trackURIs = getTrackURIs(tracks);
+    const accessToken = Spotify.getAccessToken();
+    const playlistData = {
+      name: playlistName,
+      description: "My awesome playlist", // You can customize the description
+      public: true, // Set to true for a public playlist, false for private
+    };
 
-    Spotify.savePlaylistToSpotify(name, trackURIs);
-    console.log(Spotify.savePlaylistToSpotify(name, trackURIs));
+    Spotify.savePlaylistToSpotify(playlistData, trackURIs, accessToken);
   }
 
   return (
     <>
-      <input type="text" value={name} onChange={handleChange} />
+      <input type="text" value={playlistName} onChange={handleChange} />
       {tracks.map((track, index) => (
         <Track
           key={index}
