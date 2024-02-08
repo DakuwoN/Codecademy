@@ -1,7 +1,8 @@
-const clientId = "#";
+const clientId = "e4227e62387f4726813d9dba30564e43";
 const redirectUri = "http://localhost:3000"; // Set this to your redirect URI
 
 const Spotify = {
+  // Retrieves the access token from the URL or redirects to Spotify login
   getAccessToken() {
     const accessTokenMatch = window.location.href.match(/access_token=([^&]*)/);
     const expiresInMatch = window.location.href.match(/expires_in=([^&]*)/);
@@ -16,9 +17,6 @@ const Spotify = {
       return accessToken;
     } else {
       // Redirect the user to the Spotify login page
-      // const accessUrl = `https://accounts.spotify.com/authorize?client_id=${clientId}&response_type=token&scope=user-read-private user-read-email&redirect_uri=${encodeURIComponent(
-      //   redirectUri
-      // )}`;
       const accessUrl = `https://accounts.spotify.com/authorize?client_id=${clientId}&response_type=token&scope=user-read-private user-read-email playlist-modify-public playlist-modify-private&redirect_uri=${encodeURIComponent(
         redirectUri
       )}`;
@@ -27,26 +25,27 @@ const Spotify = {
     }
   },
 
+  // Sets the access token and its expiration time in your app
   setAccessToken(accessToken, expiresIn) {
-    // Set the access token and its expiration time in your app
-    // You can use localStorage or another state management solution
     localStorage.setItem("accessToken", accessToken);
     localStorage.setItem("expirationTime", Date.now() + expiresIn * 1000);
   },
 
+  // Checks if the access token is valid based on its expiration time
   isAccessTokenValid() {
     const accessToken = localStorage.getItem("accessToken");
     const expirationTime = localStorage.getItem("expirationTime");
-
     return accessToken && expirationTime && Date.now() < expirationTime;
   },
 
+  // Saves the playlist to Spotify, including playlist details and track URIs
   async savePlaylistToSpotify(playlistData, trackURIs, accessToken) {
     try {
       if (!accessToken) {
         throw new Error("Access token not available or expired.");
       }
 
+      // Fetch user data to get the user ID
       const userResponse = await fetch("https://api.spotify.com/v1/me", {
         headers: {
           Authorization: `Bearer ${accessToken}`,
@@ -57,6 +56,7 @@ const Spotify = {
         throw new Error("Unable to fetch user data");
       }
 
+      // Parse user data and extract user ID
       const jsonResponse = await userResponse.json();
       const userId = jsonResponse.id;
 
@@ -64,6 +64,7 @@ const Spotify = {
         throw new Error("Unable to retrieve user ID");
       }
 
+      // Create a new playlist for the user
       const playlistResponse = await fetch(
         `https://api.spotify.com/v1/users/${userId}/playlists`,
         {
@@ -76,13 +77,24 @@ const Spotify = {
         }
       );
 
+      // Handle errors in creating the playlist
       if (!playlistResponse.ok) {
+        const errorResponse = await playlistResponse.json();
+        console.error("Error creating playlist:", errorResponse);
+
+        // Log specific details about the error
+        if (errorResponse.error) {
+          console.error("Error details:", errorResponse.error);
+        }
+
         throw new Error("Unable to create playlist");
       }
 
+      // Parse the response and get the playlist ID
       const playlistJsonResponse = await playlistResponse.json();
       const playlistId = playlistJsonResponse.id;
 
+      // Add tracks to the created playlist
       if (playlistId) {
         const addTracksResponse = await fetch(
           `https://api.spotify.com/v1/playlists/${playlistId}/tracks`,
@@ -96,6 +108,7 @@ const Spotify = {
           }
         );
 
+        // Handle errors in adding tracks to the playlist
         if (!addTracksResponse.ok) {
           throw new Error("Unable to add tracks to the playlist");
         }

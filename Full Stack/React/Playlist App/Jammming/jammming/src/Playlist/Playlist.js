@@ -1,42 +1,56 @@
 import Track from "../Track/Track";
-
+import React from "react";
 import Spotify from "../Spotify/Spotify";
 
+// Playlist component that displays and manages the user's playlist
 function Playlist({
   playlistName,
   setPlaylistName,
-  tracks = [
-    "spotify:track:6jG2YzhxptolDzLHTGLt7S",
-    "spotify:track:02M6vucOvmRfMxTXDUwRXu",
-  ],
+  tracks,
   addTrackToPlaylist,
   removeTrackFromPlaylist,
+  clearPlaylist,
 }) {
-  // handles the playlist playlistName change
+  // Handles the playlist name change
   function handleChange({ target }) {
     setPlaylistName(target.value);
+    // console.log("New Playlist Name:", target.value);
   }
 
-  // uri to save to spotify
+  // Function to get the URIs of tracks in the playlist
   const getTrackURIs = (tracks) => {
     return tracks.map((track) => track.uri);
   };
 
+  // Function to handle saving the playlist to Spotify
   function handleSaveToSpotify() {
     const trackURIs = getTrackURIs(tracks);
+    // const accessToken = Spotify.getAccessToken();
     const accessToken = Spotify.getAccessToken();
+
+    // Data for creating the Spotify playlist
     const playlistData = {
       name: playlistName,
       description: "My awesome playlist", // You can customize the description
       public: true, // Set to true for a public playlist, false for private
     };
 
-    Spotify.savePlaylistToSpotify(playlistData, trackURIs, accessToken);
+    // Save the playlist to Spotify using the Spotify API
+    Spotify.savePlaylistToSpotify(playlistData, trackURIs, accessToken)
+      .then(() => {
+        clearPlaylist(); // Call the function after saving the playlist to reset the state
+      })
+      .catch((error) => {
+        console.error("Error saving playlist:", error);
+      });
   }
 
   return (
     <>
+      {/* Input field for editing the playlist name */}
       <input type="text" value={playlistName} onChange={handleChange} />
+
+      {/* Map through the tracks and render Track components */}
       {tracks.map((track, index) => (
         <Track
           key={index}
@@ -46,9 +60,12 @@ function Playlist({
           isRemovable={true}
         />
       ))}
+
+      {/* Button to save the playlist to Spotify */}
       <button onClick={handleSaveToSpotify}>Save To Spotify</button>
     </>
   );
 }
 
-export default Playlist;
+// Export the Playlist component as a memoized component
+export default React.memo(Playlist);
