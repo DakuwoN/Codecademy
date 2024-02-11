@@ -49,7 +49,6 @@ function Playlist({
     <>
       {/* Input field for editing the playlist name */}
       <input type="text" value={playlistName} onChange={handleChange} />
-
       {/* Map through the tracks and render Track components */}
       {tracks.map((track, index) => (
         <Track
@@ -60,7 +59,6 @@ function Playlist({
           isRemovable={true}
         />
       ))}
-
       {/* Button to save the playlist to Spotify */}
       <button onClick={handleSaveToSpotify}>Save To Spotify</button>
     </>

@@ -1,0 +1,29 @@
+* {
+  margin: 0;
+  box-sizing: border-box;
+  padding: 0;
+}
+
+body {
+  background-color: black;
+  color: greenyellow;
+}
+
+.container {
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* Two equal columns */
+  gap: 20px; /* Adjust the gap between columns */
+}
+
+.item-a {
+  grid-area: header;
+}
+.item-b {
+  grid-area: tracklist;
+}
+.item-c {
+  grid-area: playlist;
+}
+.item-d {
+  grid-area: footer;
+}

@@ -3,8 +3,9 @@ import SearchResults from "./SearchResults/SearchResults";
 import Playlist from "./Playlist/Playlist";
 import LoginButton from "./Login/LoginButton";
 import Spotify from "./Spotify/Spotify";
-
 import { useState, useEffect } from "react";
+
+import styles from "./App.module.css";
 
 function App() {
   // Run once for the Spotify login
@@ -56,7 +57,7 @@ function App() {
   const handleSearch = (searchTerm) => {
     // Your Spotify access token
     const yourAccessToken =
-      "BQDZTPzpj9rMgepJ07F3Eit3aZc1ctPghtcFed1v-p5TAIiCZGRqX-bwzvzAw2p4EcJZjaWmPtXsVQJynAq9_1m3NBYkr3IAHckYX1G8eLSSkUMrEi9jR2zKU-Vcg3aEc4m_12-BF8KEm_QeR1Ks1voxQVBkitaQKVKwHkkbNUXzL3Gb5EUVRs4GCscN_4Ge11Uq7EihGpvNNg87A55nF_pxN7SpyZoxm12d6WcQjTU820ggmV0815HDZcEweQu7s4E_7tfd0JEMtA";
+      "BQBUiNtDPvqkHoWbRHpl2baW04PEm3V0Hl5QPjQ4knyhx6Uj0AEQQEtALx9aMIGps553l5j8Nrcg5OobB731vby2p8cXTeEJwoKKRkPKEpCEjV8UW8mTaZERGTbj325ObP2Ci7djR12p8yFgDkI1Emrt8dFxMhZ2DEH43yX-XjKSbYm0rk35ax_8wHxrmYyZEpSKbDnowe3aDzNxEFVf6TtnK52z-FL6y1EHkjH233mvs-r7DfohN4HGbrQ-ILtCEfaZ-faHTKosHA";
 
     // Fetch search results from Spotify API
     fetch(`https://api.spotify.com/v1/search?q=${searchTerm}&type=track`, {
@@ -100,17 +101,14 @@ function App() {
     <>
       {/* Render the login button */}
       <LoginButton />
-
       {/* Render the search bar with the search handler */}
       <SearchBar onSearch={handleSearch} />
-
       {/* Render the search results with playlist-related functionality */}
       <SearchResults
         results={results}
         playlistTracks={playlistTracks}
         addTrackToPlaylist={addTrackToPlaylist}
       />
-
       {/* Render the playlist with playlist-related functionality */}
       <Playlist
         playlistName={playlistName}
