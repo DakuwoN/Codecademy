@@ -5,8 +5,6 @@ import LoginButton from "./Login/LoginButton";
 import Spotify from "./Spotify/Spotify";
 import { useState, useEffect } from "react";
 
-import styles from "./App.module.css";
-
 function App() {
   // Run once for the Spotify login
   useEffect(() => {
@@ -99,6 +97,7 @@ function App() {
 
   return (
     <>
+      <h1>Jammming</h1>
       {/* Render the login button */}
       <LoginButton />
       {/* Render the search bar with the search handler */}
