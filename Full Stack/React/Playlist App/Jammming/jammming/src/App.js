@@ -4,6 +4,8 @@ import Playlist from "./Playlist/Playlist";
 import LoginButton from "./Login/LoginButton";
 import Spotify from "./Spotify/Spotify";
 import { useState, useEffect } from "react";
+import Grid from "@mui/material/Grid";
+import styles from "./App.module.css";
 
 function App() {
   // Run once for the Spotify login
@@ -55,7 +57,7 @@ function App() {
   const handleSearch = (searchTerm) => {
     // Your Spotify access token
     const yourAccessToken =
-      "BQBUiNtDPvqkHoWbRHpl2baW04PEm3V0Hl5QPjQ4knyhx6Uj0AEQQEtALx9aMIGps553l5j8Nrcg5OobB731vby2p8cXTeEJwoKKRkPKEpCEjV8UW8mTaZERGTbj325ObP2Ci7djR12p8yFgDkI1Emrt8dFxMhZ2DEH43yX-XjKSbYm0rk35ax_8wHxrmYyZEpSKbDnowe3aDzNxEFVf6TtnK52z-FL6y1EHkjH233mvs-r7DfohN4HGbrQ-ILtCEfaZ-faHTKosHA";
+      "BQD-2EeNmVtGGMu-vysT-dZCADxXdIH0Krh45gP_fn_PUd1o1QdGqOsu2slfQldetFhbIf8MaQNW5zTToQRx_ZROf6dW_CXWGxa2yXAkkYPYlfbg3L-3kCpZpdHnA2GlQ08_o5bepdkL-UHhGZQoNdZj8qFqbaLL6Y4PlcGBpe2NcU1AT80VRZSgIcoTddX-DqNcAHnljhzp19MFwSQu2qkGNSMZ6TcmAPLeqRBu5ZiW_B87CHRYQMKMMcr329eBPh4_jJtL-bvz5w";
 
     // Fetch search results from Spotify API
     fetch(`https://api.spotify.com/v1/search?q=${searchTerm}&type=track`, {
@@ -97,27 +99,37 @@ function App() {
 
   return (
     <>
-      <h1>Jammming</h1>
-      {/* Render the login button */}
-      <LoginButton />
-      {/* Render the search bar with the search handler */}
-      <SearchBar onSearch={handleSearch} />
-      {/* Render the search results with playlist-related functionality */}
-      <SearchResults
-        results={results}
-        playlistTracks={playlistTracks}
-        addTrackToPlaylist={addTrackToPlaylist}
-      />
-      {/* Render the playlist with playlist-related functionality */}
-      <Playlist
-        playlistName={playlistName}
-        setPlaylistName={setPlaylistName}
-        tracks={playlistTracks}
-        addTrackToPlaylist={addTrackToPlaylist}
-        removeTrackFromPlaylist={removeTrackFromPlaylist}
-        accessToken={accessToken}
-        clearPlaylist={clearPlaylist}
-      />
+      <Grid container spacing={2}>
+        <Grid item xs={12}>
+          <h1>Jammming</h1>
+          <p>
+            Search for a song, if you like it, add it to your playlist, and then
+            save your playlist to Spotify. <br />
+            Note: You must Login to create a playlist, you must also Create a
+            Playlist name to save to Spotify.
+          </p>
+          <LoginButton />
+        </Grid>
+        <Grid item xs={6}>
+          <SearchBar onSearch={handleSearch} />
+          <SearchResults
+            results={results}
+            playlistTracks={playlistTracks}
+            addTrackToPlaylist={addTrackToPlaylist}
+          />
+        </Grid>
+        <Grid item xs={6}>
+          <Playlist
+            playlistName={playlistName}
+            setPlaylistName={setPlaylistName}
+            tracks={playlistTracks}
+            addTrackToPlaylist={addTrackToPlaylist}
+            removeTrackFromPlaylist={removeTrackFromPlaylist}
+            accessToken={accessToken}
+            clearPlaylist={clearPlaylist}
+          />
+        </Grid>
+      </Grid>
     </>
   );
 }

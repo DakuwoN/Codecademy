@@ -1,29 +1,19 @@
-/* * {
-  margin: 0;
-  box-sizing: border-box;
-  padding: 0;
+* {
+  background-color: black;
+  color: chartreuse;
 }
 
 body {
-  background-color: black;
-  color: greenyellow;
+  box-sizing: border-box;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  max-width: 75%;
 }
 
-.container {
-  display: grid;
-  grid-template-columns: 1fr 1fr; /* Two equal columns */
-  gap: 20px; /* Adjust the gap between columns */
+.centerContent {
+  display: flex;
+  justify-content: center;
+  /* align-items: center; */
+  height: 100vh; /* This will make the item take up the full height of the viewport */
 }
-
-.item-a {
-  grid-area: header;
-}
-.item-b {
-  grid-area: tracklist;
-}
-.item-c {
-  grid-area: playlist;
-}
-.item-d {
-  grid-area: footer;
-} */

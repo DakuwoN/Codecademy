@@ -1,4 +1,4 @@
-const clientId = "#";
+const clientId = "e4227e62387f4726813d9dba30564e43";
 const redirectUri = "http://localhost:3000"; // Set this to your redirect URI
 
 const Spotify = {
