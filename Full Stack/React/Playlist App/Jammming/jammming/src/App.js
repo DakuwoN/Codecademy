@@ -5,7 +5,8 @@ import LoginButton from "./Login/LoginButton";
 import Spotify from "./Spotify/Spotify";
 import { useState, useEffect } from "react";
 import Grid from "@mui/material/Grid";
-import styles from "./App.module.css";
+import appStyles from "./App.module.css";
+import loginStyles from "./Login/LoginButton.module.css";
 
 function App() {
   // Run once for the Spotify login
@@ -57,7 +58,7 @@ function App() {
   const handleSearch = (searchTerm) => {
     // Your Spotify access token
     const yourAccessToken =
-      "BQD-2EeNmVtGGMu-vysT-dZCADxXdIH0Krh45gP_fn_PUd1o1QdGqOsu2slfQldetFhbIf8MaQNW5zTToQRx_ZROf6dW_CXWGxa2yXAkkYPYlfbg3L-3kCpZpdHnA2GlQ08_o5bepdkL-UHhGZQoNdZj8qFqbaLL6Y4PlcGBpe2NcU1AT80VRZSgIcoTddX-DqNcAHnljhzp19MFwSQu2qkGNSMZ6TcmAPLeqRBu5ZiW_B87CHRYQMKMMcr329eBPh4_jJtL-bvz5w";
+      "BQDENKkSJxFgA_GoTzD4magMKr1-hOBj5jbSlhIKUF9x89V8RIQbp8dRT_GxY6TeU9rDuUL51okMMKI1Fc2VzDkEbt7lJTh8VN_9KXIVZx6hvEfShAcB6FfN1q9QFFinO9R16Ncjtb28HfhKm1Sz84Pwk9DtUvgDTHdFinNXQXdO8-_quFqf5wvx7uZ4_pRzkHnjT6nu_J9AQlD86Qgukt3-nAjGkZIL1d-aoyCiIb0_BbHjQXnJ4YLICMOmTWXC6DkaIgsMkxWa-A";
 
     // Fetch search results from Spotify API
     fetch(`https://api.spotify.com/v1/search?q=${searchTerm}&type=track`, {
@@ -99,16 +100,25 @@ function App() {
 
   return (
     <>
-      <Grid container spacing={2}>
+      <Grid container spacing={10}>
         <Grid item xs={12}>
-          <h1>Jammming</h1>
-          <p>
-            Search for a song, if you like it, add it to your playlist, and then
-            save your playlist to Spotify. <br />
-            Note: You must Login to create a playlist, you must also Create a
-            Playlist name to save to Spotify.
-          </p>
-          <LoginButton />
+          <div className={appStyles.headerWrapper}>
+            <div className={appStyles.headerTop}>
+              <div>
+                <h1>Jammming</h1>
+              </div>
+            </div>
+            <div className={appStyles.headerBottom}>
+              <p>
+                Search for a song, if you like it, add it to your playlist, and
+                then save your playlist to Spotify. <br />
+                Note: You must Login to create a playlist, you must also Create
+                a Playlist name to save to Spotify.
+              </p>
+
+              <LoginButton />
+            </div>
+          </div>
         </Grid>
         <Grid item xs={6}>
           <SearchBar onSearch={handleSearch} />

@@ -1,5 +1,7 @@
 import React, { useEffect } from "react";
 import Spotify from "../Spotify/Spotify";
+import loginStyles from "./LoginButton.module.css";
+import { Button } from "@mui/material";
 
 function LoginButton() {
   useEffect(() => {
@@ -13,7 +15,13 @@ function LoginButton() {
   return (
     <>
       {/* Button to trigger the Spotify login process */}
-      <button onClick={Spotify.getAccessToken}>Login with Spotify!</button>
+      <Button
+        className={loginStyles.loginButton}
+        onClick={Spotify.getAccessToken}
+        variant="contained"
+      >
+        Login with Spotify!
+      </Button>
     </>
   );
 }
