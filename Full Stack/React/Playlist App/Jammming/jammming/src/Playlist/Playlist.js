@@ -46,9 +46,16 @@ function Playlist({
   }
 
   return (
-    <>
+    <div className="playlist-container">
       {/* Input field for editing the playlist name */}
       <input type="text" value={playlistName} onChange={handleChange} />
+
+      {/* Playlist name with specific styling */}
+      <h2 className="playlist-name">{playlistName}</h2>
+
+      {/* Button to save the playlist to Spotify */}
+      <button onClick={handleSaveToSpotify}>Save To Spotify</button>
+
       {/* Map through the tracks and render Track components */}
       {tracks.map((track, index) => (
         <Track
@@ -59,9 +66,7 @@ function Playlist({
           isRemovable={true}
         />
       ))}
-      {/* Button to save the playlist to Spotify */}
-      <button onClick={handleSaveToSpotify}>Save To Spotify</button>
-    </>
+    </div>
   );
 }
 

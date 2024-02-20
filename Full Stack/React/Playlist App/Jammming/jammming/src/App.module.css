@@ -8,13 +8,15 @@ body {
   color: white;
   font-family: "Kode Mono", monospace;
   font-optical-sizing: auto;
-
+  height: 100%;
   font-style: normal;
 }
 
 h1 {
   letter-spacing: 100px;
 }
+
+/* Header Styles  */
 
 .headerWrapper {
   display: flex;
@@ -42,4 +44,18 @@ h1 {
   /* background-position-y: top; */
   height: 200px;
   border-radius: 0px 0px 25px 25px;
+}
+
+.appWrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  width: 80%;
+  text-align: center;
+  padding: 20px;
+  margin-left: 350px;
+}
+
+.playlist {
 }

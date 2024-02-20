@@ -19,7 +19,9 @@ function Track({
     <>
       {/* Display track information */}
       <div className="trackinfo">
-        <p>{songInfo.name}</p>
+        <p>
+          <b>{songInfo.name}</b>
+        </p>
         <p>{songInfo.artist}</p>
         <p>{songInfo.album}</p>
       </div>

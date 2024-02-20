@@ -6,7 +6,7 @@ import Spotify from "./Spotify/Spotify";
 import { useState, useEffect } from "react";
 import Grid from "@mui/material/Grid";
 import appStyles from "./App.module.css";
-import loginStyles from "./Login/LoginButton.module.css";
+import searchStyles from "./SearchResults/SearchResults.module.css";
 
 function App() {
   // Run once for the Spotify login
@@ -58,7 +58,7 @@ function App() {
   const handleSearch = (searchTerm) => {
     // Your Spotify access token
     const yourAccessToken =
-      "BQDENKkSJxFgA_GoTzD4magMKr1-hOBj5jbSlhIKUF9x89V8RIQbp8dRT_GxY6TeU9rDuUL51okMMKI1Fc2VzDkEbt7lJTh8VN_9KXIVZx6hvEfShAcB6FfN1q9QFFinO9R16Ncjtb28HfhKm1Sz84Pwk9DtUvgDTHdFinNXQXdO8-_quFqf5wvx7uZ4_pRzkHnjT6nu_J9AQlD86Qgukt3-nAjGkZIL1d-aoyCiIb0_BbHjQXnJ4YLICMOmTWXC6DkaIgsMkxWa-A";
+      "BQBQ4tFh3sb6l6wT4DwlUhbKmY9FpsOZ_7kPCG26wWsTkh3e52M6_m1_c9l3-qlv0SAerE2pnORaiZeBjj6w5L24NujV8NCkROqC5fHQduY69Tb0XxSpCGg6nlx7mdhWUf2vFj_QByPCW4ULdivTbDUgg8ze0P8ty_pRo73Tk7ZGD5LJLO83Jn8U2DOTBP4003V6pk5v0lobWZvEk4Z9207HTuIAGYLBHxSnl6uoEspSRsDyESzWonFNMiLo9ePzOCtqIh5u9X3_Sw";
 
     // Fetch search results from Spotify API
     fetch(`https://api.spotify.com/v1/search?q=${searchTerm}&type=track`, {
@@ -100,7 +100,7 @@ function App() {
 
   return (
     <>
-      <Grid container spacing={10}>
+      <Grid container spacing={4}>
         <Grid item xs={12}>
           <div className={appStyles.headerWrapper}>
             <div className={appStyles.headerTop}>
@@ -120,25 +120,37 @@ function App() {
             </div>
           </div>
         </Grid>
-        <Grid item xs={6}>
-          <SearchBar onSearch={handleSearch} />
-          <SearchResults
-            results={results}
-            playlistTracks={playlistTracks}
-            addTrackToPlaylist={addTrackToPlaylist}
-          />
-        </Grid>
-        <Grid item xs={6}>
-          <Playlist
-            playlistName={playlistName}
-            setPlaylistName={setPlaylistName}
-            tracks={playlistTracks}
-            addTrackToPlaylist={addTrackToPlaylist}
-            removeTrackFromPlaylist={removeTrackFromPlaylist}
-            accessToken={accessToken}
-            clearPlaylist={clearPlaylist}
-          />
-        </Grid>
+
+        <div className={appStyles.appWrapper}>
+          <Grid item xs={6}>
+            <div className={searchStyles.searchWrapper}>
+              <SearchBar onSearch={handleSearch} />
+              <div className={searchStyles.searchContainer}>
+                <SearchResults
+                  results={results}
+                  playlistTracks={playlistTracks}
+                  addTrackToPlaylist={addTrackToPlaylist}
+                />
+              </div>
+            </div>
+          </Grid>
+
+          <Grid item xs={6}>
+            <div className="playlistWrapper">
+              <div className="playlistContainer">
+                <Playlist
+                  playlistName={playlistName}
+                  setPlaylistName={setPlaylistName}
+                  tracks={playlistTracks}
+                  addTrackToPlaylist={addTrackToPlaylist}
+                  removeTrackFromPlaylist={removeTrackFromPlaylist}
+                  accessToken={accessToken}
+                  clearPlaylist={clearPlaylist}
+                />
+              </div>
+            </div>
+          </Grid>
+        </div>
       </Grid>
     </>
   );

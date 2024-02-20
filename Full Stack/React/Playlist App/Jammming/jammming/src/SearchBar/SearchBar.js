@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { Button } from "@mui/material";
+import searchStyles from "./SearchBar.module.css";
 
 // SearchBar component receives a callback function 'onSearch' as a prop
 function SearchBar({ onSearch }) {
@@ -23,7 +25,13 @@ function SearchBar({ onSearch }) {
         {/* Input element controlled by 'searchTerm' state */}
         <input type="text" value={searchTerm} onChange={handleChange} />
         {/* Submit button for triggering the search */}
-        <button type="submit">Search</button>
+        <Button
+          className={searchStyles.searchSong}
+          variant="contained"
+          type="submit"
+        >
+          Search
+        </Button>
       </form>
     </>
   );
