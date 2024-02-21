@@ -1,6 +1,7 @@
 import Track from "../Track/Track";
 import React from "react";
 import Spotify from "../Spotify/Spotify";
+import playlistStyles from "./Playlist.module.css";
 
 // Playlist component that displays and manages the user's playlist
 function Playlist({
@@ -55,17 +56,18 @@ function Playlist({
 
       {/* Button to save the playlist to Spotify */}
       <button onClick={handleSaveToSpotify}>Save To Spotify</button>
-
-      {/* Map through the tracks and render Track components */}
-      {tracks.map((track, index) => (
-        <Track
-          key={index}
-          songInfo={track}
-          addTrackToPlaylist={addTrackToPlaylist}
-          removeTrackFromPlaylist={removeTrackFromPlaylist}
-          isRemovable={true}
-        />
-      ))}
+      <div className={playlistStyles.playlistResults}>
+        {/* Map through the tracks and render Track components */}
+        {tracks.map((track, index) => (
+          <Track
+            key={index}
+            songInfo={track}
+            addTrackToPlaylist={addTrackToPlaylist}
+            removeTrackFromPlaylist={removeTrackFromPlaylist}
+            isRemovable={true}
+          />
+        ))}
+      </div>
     </div>
   );
 }

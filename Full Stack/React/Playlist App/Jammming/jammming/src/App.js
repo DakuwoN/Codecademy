@@ -58,7 +58,7 @@ function App() {
   const handleSearch = (searchTerm) => {
     // Your Spotify access token
     const yourAccessToken =
-      "BQBQ4tFh3sb6l6wT4DwlUhbKmY9FpsOZ_7kPCG26wWsTkh3e52M6_m1_c9l3-qlv0SAerE2pnORaiZeBjj6w5L24NujV8NCkROqC5fHQduY69Tb0XxSpCGg6nlx7mdhWUf2vFj_QByPCW4ULdivTbDUgg8ze0P8ty_pRo73Tk7ZGD5LJLO83Jn8U2DOTBP4003V6pk5v0lobWZvEk4Z9207HTuIAGYLBHxSnl6uoEspSRsDyESzWonFNMiLo9ePzOCtqIh5u9X3_Sw";
+      "BQDvgXqstPg-tFiSr6kTTeK0Mzhat2gBSMkPOlXOyzw7xfFlBWfBJjkvSaTFqzz0M7wQur_fHKFLurL7YKP37ChQLfto21UpZk91tHn9nWqK5iMjDce9ymbkkrXcSkpQwTj7vTALgXKvrXL--T9JUyV56vuLUMi0-rXSRH_6nmFVYSmMprY_mVjGxEwJBRDuDiM1OeXPS5O86iriFp-_2koCOIGVVcHs1F4zVFkOWe3IR3KxwEfyn4fLu2Ox6uEhpVx2v_4QTLsFUg";
 
     // Fetch search results from Spotify API
     fetch(`https://api.spotify.com/v1/search?q=${searchTerm}&type=track`, {
@@ -100,7 +100,7 @@ function App() {
 
   return (
     <>
-      <Grid container spacing={4}>
+      <Grid container spacing={4} xs={12} className={appStyles.gridContainer}>
         <Grid item xs={12}>
           <div className={appStyles.headerWrapper}>
             <div className={appStyles.headerTop}>
@@ -120,35 +120,28 @@ function App() {
             </div>
           </div>
         </Grid>
-
-        <div className={appStyles.appWrapper}>
-          <Grid item xs={6}>
-            <div className={searchStyles.searchWrapper}>
-              <SearchBar onSearch={handleSearch} />
-              <div className={searchStyles.searchContainer}>
-                <SearchResults
-                  results={results}
-                  playlistTracks={playlistTracks}
-                  addTrackToPlaylist={addTrackToPlaylist}
-                />
-              </div>
+        <div className={appStyles.gridCentered}>
+          <Grid item xs={6} className="grid1">
+            <SearchBar onSearch={handleSearch} />
+            <div className={searchStyles.searchContainer}>
+              <SearchResults
+                results={results}
+                playlistTracks={playlistTracks}
+                addTrackToPlaylist={addTrackToPlaylist}
+              />
             </div>
           </Grid>
 
-          <Grid item xs={6}>
-            <div className="playlistWrapper">
-              <div className="playlistContainer">
-                <Playlist
-                  playlistName={playlistName}
-                  setPlaylistName={setPlaylistName}
-                  tracks={playlistTracks}
-                  addTrackToPlaylist={addTrackToPlaylist}
-                  removeTrackFromPlaylist={removeTrackFromPlaylist}
-                  accessToken={accessToken}
-                  clearPlaylist={clearPlaylist}
-                />
-              </div>
-            </div>
+          <Grid item xs={6} className="grid2">
+            <Playlist
+              playlistName={playlistName}
+              setPlaylistName={setPlaylistName}
+              tracks={playlistTracks}
+              addTrackToPlaylist={addTrackToPlaylist}
+              removeTrackFromPlaylist={removeTrackFromPlaylist}
+              accessToken={accessToken}
+              clearPlaylist={clearPlaylist}
+            />
           </Grid>
         </div>
       </Grid>
