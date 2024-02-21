@@ -7,6 +7,7 @@ import { useState, useEffect } from "react";
 import Grid from "@mui/material/Grid";
 import appStyles from "./App.module.css";
 import searchStyles from "./SearchResults/SearchResults.module.css";
+import footerStyles from "./App.module.css";
 
 function App() {
   // Run once for the Spotify login
@@ -145,6 +146,11 @@ function App() {
           </Grid>
         </div>
       </Grid>
+
+      <footer className={footerStyles.footerContent}>
+        Designed by: <a href="https://dakuwon.github.io"> Matthew McCane</a>{" "}
+        &copy; 2024
+      </footer>
     </>
   );
 }

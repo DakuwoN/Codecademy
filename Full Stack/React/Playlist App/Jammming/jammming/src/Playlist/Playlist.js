@@ -2,6 +2,7 @@ import Track from "../Track/Track";
 import React from "react";
 import Spotify from "../Spotify/Spotify";
 import playlistStyles from "./Playlist.module.css";
+import { Button } from "@mui/material";
 
 // Playlist component that displays and manages the user's playlist
 function Playlist({
@@ -52,10 +53,12 @@ function Playlist({
       <input type="text" value={playlistName} onChange={handleChange} />
 
       {/* Playlist name with specific styling */}
-      <h2 className="playlist-name">{playlistName}</h2>
+      {/* <h2 className="playlist-name">{playlistName}</h2> */}
 
       {/* Button to save the playlist to Spotify */}
-      <button onClick={handleSaveToSpotify}>Save To Spotify</button>
+      <Button variant="contained" onClick={handleSaveToSpotify}>
+        Save To Spotify
+      </Button>
       <div className={playlistStyles.playlistResults}>
         {/* Map through the tracks and render Track components */}
         {tracks.map((track, index) => (
