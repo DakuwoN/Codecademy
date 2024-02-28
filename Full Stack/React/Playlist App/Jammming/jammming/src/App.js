@@ -10,19 +10,18 @@ import searchStyles from "./SearchResults/SearchResults.module.css";
 import footerStyles from "./App.module.css";
 
 function App() {
-  // Run once for the Spotify login
+  const [accessToken, setAccessToken] = useState("");
+
   useEffect(() => {
-    // Check if the Spotify access token is not valid
-    if (!Spotify.isAccessTokenValid()) {
-      // Set the access token from Spotify
-      setAccessToken(Spotify.getAccessToken());
+    if (!accessToken) {
+      const token = Spotify.getAccessToken();
+      setAccessToken(token);
     }
-  }, []);
+  }, [accessToken]);
 
   // State for the playlist
   const [playlistName, setPlaylistName] = useState("Create New Playlist");
   const [playlistTracks, setPlaylistTracks] = useState([]);
-  const [accessToken, setAccessToken] = useState("");
 
   // Function to clear the playlist
   function clearPlaylist() {
@@ -58,13 +57,15 @@ function App() {
   // Function to handle search results
   const handleSearch = (searchTerm) => {
     // Your Spotify access token
-    const yourAccessToken =
-      "BQDyccaWhxv1A30o99x6u9Bx_SFSyCzb5b82BxnZnKLnZQiqKrqUIR63vA3UJjk0Lxwb90CfOz0y_kzwocvbHyf_nyWyPYSZfhQMTgVKuxggzqd_agxkX5KH3HOEiM05VnuANCuhWO1Sv6fQQZMhkbJwGeaxY8zXbGNOu_2RXlE2wZJ4de73dp8Y3jahc2r-_sQjFstgq3gXyLCAfS1UtTiDqjMYkhrSfTogWlPQYdTyKLUkRHx3U3FWMc55N8v5bw7FctGp8T43-w";
+    // const yourAccessToken =
+    //   "BQDyccaWhxv1A30o99x6u9Bx_SFSyCzb5b82BxnZnKLnZQiqKrqUIR63vA3UJjk0Lxwb90CfOz0y_kzwocvbHyf_nyWyPYSZfhQMTgVKuxggzqd_agxkX5KH3HOEiM05VnuANCuhWO1Sv6fQQZMhkbJwGeaxY8zXbGNOu_2RXlE2wZJ4de73dp8Y3jahc2r-_sQjFstgq3gXyLCAfS1UtTiDqjMYkhrSfTogWlPQYdTyKLUkRHx3U3FWMc55N8v5bw7FctGp8T43-w";
+
+    Spotify.getAccessToken();
 
     // Fetch search results from Spotify API
     fetch(`https://api.spotify.com/v1/search?q=${searchTerm}&type=track`, {
       headers: {
-        Authorization: "Bearer " + yourAccessToken,
+        Authorization: "Bearer " + accessToken,
       },
     })
       .then(

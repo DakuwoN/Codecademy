@@ -1,16 +1,17 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Spotify from "../Spotify/Spotify";
 import loginStyles from "./LoginButton.module.css";
 import { Button } from "@mui/material";
 
 function LoginButton() {
+  const [accessToken, setAccessToken] = useState("");
+
   useEffect(() => {
-    // Check if access token is valid when the component mounts
-    if (!Spotify.isAccessTokenValid()) {
-      // If the access token is not valid, initiate the process to obtain it
-      Spotify.getAccessToken();
+    if (!accessToken) {
+      const token = Spotify.getAccessToken();
+      setAccessToken(token);
     }
-  }, []);
+  }, [accessToken]);
 
   return (
     <>
