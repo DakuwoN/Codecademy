@@ -1,3 +1,6 @@
+import TrackStyles from "./Track.module.css";
+import { Button } from "@mui/material";
+
 // Responsible for displaying track information
 function Track({
   songInfo, // Information about the song (name, artist, album, etc.)
@@ -15,31 +18,52 @@ function Track({
     removeTrackFromPlaylist(songInfo);
   }
 
+  function handleSong(uri, accessToken) {
+    fetch(`https://api.spotify.com/v1/me/player/play`, {
+      method: "PUT",
+      body: JSON.stringify({ uris: [uri] }),
+      headers: {
+        Authorization: "Bearer " + yourAccessToken,
+      },
+    }).then((response) => {
+      if (response.ok) {
+        return response.json();
+      }
+    });
+  }
+
   return (
     <>
       {/* Display track information */}
-      <div className="trackinfo">
-        <p>
-          <b>{songInfo.name}</b>
-        </p>
-        <p>{songInfo.artist}</p>
-        <p>{songInfo.album}</p>
-      </div>
+      <div className={TrackStyles.trackContainer}>
+        <div className="trackinfo">
+          <hr></hr>
+          <p>
+            <b>Song: {songInfo.name}</b>
+          </p>
+          <p>Artist: {songInfo.artist}</p>
+          <p>Album: {songInfo.album}</p>
+        </div>
+        <hr></hr>
 
-      {/* Render the appropriate button based on track removability */}
-      {isRemovable ? (
-        // Render "Remove Song" button for removable tracks
-        <div className="removebutton">
-          <button onClick={handleRemove}>Remove Song</button>
-        </div>
-      ) : (
-        // Render "+" button for non-removable tracks
-        <div className="addbutton">
-          <button type="submit" onClick={handleClick}>
-            +
-          </button>
-        </div>
-      )}
+        {/* Render the appropriate button based on track removability */}
+        {isRemovable ? (
+          // Render "Remove Song" button for removable tracks
+          <div className="removebutton">
+            <Button onClick={handleRemove}>Remove Song</Button>
+          </div>
+        ) : (
+          // Render "+" button for non-removable tracks
+          <div className={TrackStyles.addbutton}>
+            <Button type="submit" className="plusSign" onClick={handleClick}>
+              +
+            </Button>
+            <Button type="playSong" className="play" onClick={handleSong}>
+              Play
+            </Button>
+          </div>
+        )}
+      </div>
     </>
   );
 }

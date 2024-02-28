@@ -59,7 +59,7 @@ function App() {
   const handleSearch = (searchTerm) => {
     // Your Spotify access token
     const yourAccessToken =
-      "BQDvgXqstPg-tFiSr6kTTeK0Mzhat2gBSMkPOlXOyzw7xfFlBWfBJjkvSaTFqzz0M7wQur_fHKFLurL7YKP37ChQLfto21UpZk91tHn9nWqK5iMjDce9ymbkkrXcSkpQwTj7vTALgXKvrXL--T9JUyV56vuLUMi0-rXSRH_6nmFVYSmMprY_mVjGxEwJBRDuDiM1OeXPS5O86iriFp-_2koCOIGVVcHs1F4zVFkOWe3IR3KxwEfyn4fLu2Ox6uEhpVx2v_4QTLsFUg";
+      "BQDyccaWhxv1A30o99x6u9Bx_SFSyCzb5b82BxnZnKLnZQiqKrqUIR63vA3UJjk0Lxwb90CfOz0y_kzwocvbHyf_nyWyPYSZfhQMTgVKuxggzqd_agxkX5KH3HOEiM05VnuANCuhWO1Sv6fQQZMhkbJwGeaxY8zXbGNOu_2RXlE2wZJ4de73dp8Y3jahc2r-_sQjFstgq3gXyLCAfS1UtTiDqjMYkhrSfTogWlPQYdTyKLUkRHx3U3FWMc55N8v5bw7FctGp8T43-w";
 
     // Fetch search results from Spotify API
     fetch(`https://api.spotify.com/v1/search?q=${searchTerm}&type=track`, {
