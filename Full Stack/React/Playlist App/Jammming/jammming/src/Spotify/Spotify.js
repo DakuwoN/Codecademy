@@ -4,6 +4,18 @@ const redirectUri = "http://localhost:3000"; // Set this to your redirect URI
 const Spotify = {
   // Retrieves the access token from the URL or redirects to Spotify login
   getAccessToken() {
+    const storedAccessToken = localStorage.getItem("accessToken");
+    const storedExpirationTime = localStorage.getItem("expirationTime");
+
+    // Check if there is a stored and valid access token
+    if (
+      storedAccessToken &&
+      storedExpirationTime &&
+      Date.now() < storedExpirationTime
+    ) {
+      return storedAccessToken;
+    }
+
     const accessTokenMatch = window.location.href.match(/access_token=([^&]*)/);
     const expiresInMatch = window.location.href.match(/expires_in=([^&]*)/);
 

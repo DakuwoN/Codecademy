@@ -8,6 +8,7 @@ function Track({
   removeTrackFromPlaylist, // Function to remove the track from the playlist
   isRemovable, // Indicates whether the track is removable from the playlist
 }) {
+  console.log("Song Info: ", songInfo);
   // Handles click event when adding the track to the playlist
   function handleClick() {
     addTrackToPlaylist(songInfo);
@@ -18,18 +19,14 @@ function Track({
     removeTrackFromPlaylist(songInfo);
   }
 
-  function handleSong(uri, accessToken) {
-    fetch(`https://api.spotify.com/v1/me/player/play`, {
-      method: "PUT",
-      body: JSON.stringify({ uris: [uri] }),
-      headers: {
-        Authorization: "Bearer " + yourAccessToken,
-      },
-    }).then((response) => {
-      if (response.ok) {
-        return response.json();
-      }
-    });
+  function playPreview(preview_url) {
+    console.log("Preview URL: ", preview_url);
+    if (preview_url) {
+      let audio = new Audio(preview_url);
+      audio.play();
+    } else {
+      console.log("No preview available for this track.");
+    }
   }
 
   return (
@@ -58,7 +55,11 @@ function Track({
             <Button type="submit" className="plusSign" onClick={handleClick}>
               +
             </Button>
-            <Button type="playSong" className="play" onClick={handleSong}>
+            <Button
+              type="playSong"
+              className="play"
+              onClick={() => playPreview(songInfo.preview_url)}
+            >
               Play
             </Button>
           </div>

@@ -57,8 +57,6 @@ function App() {
   // Function to handle search results
   const handleSearch = (searchTerm) => {
     // Your Spotify access token
-    // const yourAccessToken =
-    //   "BQDyccaWhxv1A30o99x6u9Bx_SFSyCzb5b82BxnZnKLnZQiqKrqUIR63vA3UJjk0Lxwb90CfOz0y_kzwocvbHyf_nyWyPYSZfhQMTgVKuxggzqd_agxkX5KH3HOEiM05VnuANCuhWO1Sv6fQQZMhkbJwGeaxY8zXbGNOu_2RXlE2wZJ4de73dp8Y3jahc2r-_sQjFstgq3gXyLCAfS1UtTiDqjMYkhrSfTogWlPQYdTyKLUkRHx3U3FWMc55N8v5bw7FctGp8T43-w";
 
     Spotify.getAccessToken();
 
@@ -72,7 +70,6 @@ function App() {
         (response) => {
           // Check if the response is successful
           if (response.ok) {
-            console.log(response);
             return response.json();
           }
           // Throw an error if the request fails
@@ -90,7 +87,9 @@ function App() {
             artist: track.artists[0].name,
             album: track.album.name,
             uri: track.uri,
+            preview: track.preview_url,
           }));
+
           // Set the search results state
           setResults(trackData);
         } else {
