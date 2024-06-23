@@ -1,5 +1,5 @@
-const clientId = "#";
-const redirectUri = "http://localhost:3000"; // Set this to your redirect URI
+const clientId = process.env.REACT_APP_CLIENT_ID
+const redirectUri = "https://dakuwon-jammming.netlify.app/";
 
 const Spotify = {
   // Retrieves the access token from the URL or redirects to Spotify login
