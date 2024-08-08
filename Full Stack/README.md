@@ -25,3 +25,4 @@ This is the documentation of my journey as I learn Full Stack Development at Cod
 - [Intro To Back End](/Full%20Stack/Back%20End%20Development/Intro%20To%20Back%20End/)
 - [Back-end with Express.js](/Full%20Stack/Back%20End%20Development/)
 - [User Authentication and Authorization](/Full%20Stack/Back%20End%20Development/User%20Authentication%20and%20Authorization/)
+- [Back-end and Feature Testing](/Full%20Stack/Back%20End%20Development/Back-end%20and%20Feature%20Testing/)
